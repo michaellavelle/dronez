@@ -14,6 +14,7 @@ import org.machinelearning4j.dronez.mock.MockDrone;
 import org.machinelearning4j.dronez.mock.MockDroneModel;
 import org.machinelearning4j.dronez.mock.MockWebCamObserver;
 import org.machinelearning4j.dronez.tracking.AbstractWebCamObserver;
+import org.machinelearning4j.dronez.tracking.WebCamObserver;
 import org.machinelearning4j.dronez.trajectory.CircleTrajectory;
 import org.ml4j.mdp.Model;
 import org.ml4j.mdp.StateObserver;
