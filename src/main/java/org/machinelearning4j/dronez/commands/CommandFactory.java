@@ -11,4 +11,5 @@ public interface CommandFactory extends StateActionSequenceListener<DroneState,D
 	public TargetTrajectoryCommand createTargetTrajectoryCommand(Trajectory<DroneState> trajectory,int iterations);
 	public NoOpCommand createNoOpCommand(int iterations);
 	public void updatePolicies();
+	public void init();
 }

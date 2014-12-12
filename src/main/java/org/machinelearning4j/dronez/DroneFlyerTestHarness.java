@@ -41,6 +41,7 @@ public class DroneFlyerTestHarness extends AbstractDroneFlyer{
 		boolean useMocks = true;
 		
 		CommandFactory commandFactory = new NoOpCommandFactoryImpl();
+		commandFactory.init();
 		
 		if (useMocks)
 		{
