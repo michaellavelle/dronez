@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.machinelearning4j.dronez</groupId>
+	<artifactId>dronez</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>dronez</name>
+	<properties>
+		<de.uni-hamburg.yadrone.yadrone-core.version>0.3.4-SNAPSHOT</de.uni-hamburg.yadrone.yadrone-core.version>
+		<com.github.sarxos.webcam-capture.version>0.3.10-SNAPSHOT</com.github.sarxos.webcam-capture.version>
+	</properties>
+	<distributionManagement>
+		<repository>
+			<id>repo</id>
+			<url>https://github.com/OpenSourceAgility/opensourceagility-mvn-repo/raw/master/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-repo</id>
+			<url>https://github.com/OpenSourceAgility/opensourceagility-mvn-repo/raw/master/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>opensourceagility-snapshots</id>
+			<url>http://repo.opensourceagility.com/snapshots</url>
+		</repository>
+		<repository>
+			<id>opensourceagility-releases</id>
+			<url>http://repo.opensourceagility.com/releases</url>
+		</repository>
+		<repository>
+			<id>Sonatype OSS Snapshot Repository</id>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+	<dependencies>
+	    <!--  
+		<dependency>
+			<groupId>de.uni-hamburg.yadrone</groupId>
+			<artifactId>yadrone-core</artifactId>
+			<version>${de.uni-hamburg.yadrone.yadrone-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sarxos</groupId>
+			<artifactId>webcam-capture</artifactId>
+			<version>0.3.11-SNAPSHOT</version>
+		</dependency>
+		 -->
+
+		<dependency>
+		<groupId>org.ml4j</groupId>
+	<artifactId>ml4j-mdp</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	
+		<!--  
+			<dependency>
+			<groupId>org.opendronecontrol</groupId>
+			<artifactId>odc</artifactId>
+			<version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.opendronecontrol</groupId>
+			<artifactId>ardrone</artifactId>
+			<version>0.1</version>
+		</dependency>
+		-->
+		<!-- 
+		
+		<dependency>
+			<groupId>org.ml4j</groupId>
+			<artifactId>ml4j-imaging</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		 -->
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
