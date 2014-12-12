@@ -43,7 +43,7 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 	private Probabilities4D probabilities4D;
 	
 	@Override
-	protected void init() {
+	public void init() {
 		this.probabilities4D = new Probabilities4D();
 		this.learnedLeftRightMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(LeftRightAction.ALL_ACTIONS,new LeftRightActionIndexMapper(),probabilities4D.getLeftRightProbabilitiesBuilder());
 		this.learnedUpDownMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(UpDownAction.ALL_ACTIONS,new UpDownActionIndexMapper(),probabilities4D.getUpDownProbabilitiesBuilder());

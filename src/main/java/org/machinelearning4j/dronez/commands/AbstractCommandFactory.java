@@ -14,7 +14,7 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 	private StateActionSequenceHistory<DroneState,DroneState,DroneAction> history;
 	
 	
-	protected void init()
+	public void init()
 	{
 		this.distanceToTargetPolicy = createDistanceToTargetPolicy();
 	}
@@ -22,7 +22,6 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 	public AbstractCommandFactory()
 	{
 		this.history = new StateActionSequenceHistory<DroneState,DroneState,DroneAction>();
-		init();
 	}
 
 	

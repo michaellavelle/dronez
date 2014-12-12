@@ -19,7 +19,7 @@ public abstract class AbstractInnerOuterRegionPolicyCommandFactory extends Abstr
 	private double boundary;
 	
 	@Override
-	protected void init()
+	public void init()
 	{
 		outerLeftRightPolicy = new SimpleLeftRightPolicy();
 		outerUpDownPolicy = new SimpleUpDownPolicy();
