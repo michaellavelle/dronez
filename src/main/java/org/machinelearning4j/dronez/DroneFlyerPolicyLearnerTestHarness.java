@@ -101,12 +101,6 @@ public class DroneFlyerPolicyLearnerTestHarness extends AbstractDroneFlyer{
 		
 		drone.addStateActionSequenceListener(commandFactory);
 
-		
-		
-		NoOpCommand noOpCommand = commandFactory.createNoOpCommand(90);
-		drone.executeCommand(noOpCommand);
-		
-		
 		HoverCommand hoverCommand = null;
 		
 		for (int i = 0; i < 50; i++)
