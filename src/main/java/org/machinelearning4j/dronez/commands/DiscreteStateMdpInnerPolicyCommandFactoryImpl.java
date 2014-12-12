@@ -64,9 +64,13 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 		if (serializationHelper != null)
 		{
 			
-			serializationHelper.serialize(learnedLeftRightMdp.getPolicy(), "leftRight");
-			serializationHelper.serialize(learnedUpDownMdp.getPolicy(), "upDown");
-			serializationHelper.serialize(learnedForwardBackMdp.getPolicy(), "forwardBack");
+			serializationHelper.serialize(learnedLeftRightMdp.getPolicy(), "leftRightPolicy");
+			serializationHelper.serialize(learnedUpDownMdp.getPolicy(), "upDownPolicy");
+			serializationHelper.serialize(learnedForwardBackMdp.getPolicy(), "forwardBackPolicy");
+			serializationHelper.serialize(learnedLeftRightMdp.getPolicy(), "leftRightMdp");
+			serializationHelper.serialize(learnedUpDownMdp.getPolicy(), "upDownMdp");
+			serializationHelper.serialize(learnedForwardBackMdp.getPolicy(), "forwardBackMdp");
+			serializationHelper.serialize(probabilities4D, "probabilities");
 
 		}
 	}

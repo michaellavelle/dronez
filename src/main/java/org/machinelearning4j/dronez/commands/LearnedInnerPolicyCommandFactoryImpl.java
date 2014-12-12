@@ -26,21 +26,21 @@ public class LearnedInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegi
 	@Override
 	protected Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
 	{
-		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "leftRight");
+		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "leftRightPolicy");
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
 	{
-		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "upDown");
+		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "upDownPolicy");
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy()
 	{
-		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "forwardBack");
+		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "forwardBackPolicy");
 	}
 
 	@Override
