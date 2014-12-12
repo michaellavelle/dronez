@@ -1,5 +1,7 @@
 package org.machinelearning4j.dronez.commands;
 
+import java.io.Serializable;
+
 import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.DroneStateWithRecentActions;
 import org.machinelearning4j.dronez.domain.ForwardBackAction;
@@ -15,8 +17,12 @@ import org.machinelearning4j.dronez.policy.UpDownActionIndexMapper;
 import org.ml4j.mdp.IndexedProbabilitiesBuilder;
 import org.ml4j.mdp.StateActionSequenceListener;
 
-public class Probabilities4D implements StateActionSequenceListener<DroneStateWithRecentActions,DroneStateWithRecentActions, DroneAction> {
+public class Probabilities4D implements StateActionSequenceListener<DroneStateWithRecentActions,DroneStateWithRecentActions, DroneAction>,Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private IndexedProbabilitiesBuilder<PositionVelocity,LeftRightAction> leftRightProbabilitiesBuilder;
 	private IndexedProbabilitiesBuilder<PositionVelocity,UpDownAction> upDownProbabilitiesBuilder;
 	private IndexedProbabilitiesBuilder<PositionVelocity,ForwardBackAction> forwardBackProbabilitiesBuilder;
