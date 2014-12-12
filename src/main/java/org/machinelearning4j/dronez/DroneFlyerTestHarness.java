@@ -25,7 +25,7 @@ public class DroneFlyerTestHarness extends AbstractDroneFlyer{
 	
 	
 	
-	public static DroneState HOVER_POSITION = new DroneState(new PositionVelocity(0,0),new PositionVelocity(0.4,0),new PositionVelocity(1.5,0),new PositionVelocity(0,0));
+	public static DroneState HOVER_POSITION = new DroneState(new PositionVelocity(0,0),new PositionVelocity(0.3,0),new PositionVelocity(2.5,0),new PositionVelocity(0,0));
 
 	private static AbstractWebCamObserver webCamObserver = null;
 
