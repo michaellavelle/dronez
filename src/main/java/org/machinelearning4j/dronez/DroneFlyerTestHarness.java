@@ -106,7 +106,7 @@ public class DroneFlyerTestHarness extends AbstractDroneFlyer{
 		drone.executeCommand(noOpCommand);
 		
 		
-		HoverCommand hoverCommand = commandFactory.createHoverCommand(HOVER_POSITION, 90);
+		HoverCommand hoverCommand = commandFactory.createHoverCommand(HOVER_POSITION, 500);
 
 
 		// Hover
