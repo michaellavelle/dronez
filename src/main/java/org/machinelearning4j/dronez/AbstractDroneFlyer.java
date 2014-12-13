@@ -1,5 +1,9 @@
 package org.machinelearning4j.dronez;
 
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.machinelearning4j.dronez.commands.CommandFactory;
 import org.machinelearning4j.dronez.domain.Drone;
 import org.machinelearning4j.dronez.domain.DroneState;
@@ -16,6 +20,15 @@ public abstract class AbstractDroneFlyer {
 	private DronePositionPrinter dronePositionPrinter;
 	
 	protected CommandFactory commandFactory;
+	
+	static
+	{
+		// Set AR Drone Logging to not log WARNING messages
+		for (Handler handler : Logger.getLogger("").getHandlers())
+		{
+			handler.setLevel(Level.SEVERE);
+		}
+	}
 	
 	
 	public DronePositionPrinter getDronePositionPrinter() {
