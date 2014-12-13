@@ -5,3 +5,4 @@ Test Harness for experiments into Quadcopter stabilisation using Markov Decision
 
 Uses OpenDroneControl ARDrone libraries, ml4j-mdp components for Reinforcement Learning, and ml4j-imaging & Sarxos components for webcam position estimation.
 
+Experiment write-up report to follow in due course.
