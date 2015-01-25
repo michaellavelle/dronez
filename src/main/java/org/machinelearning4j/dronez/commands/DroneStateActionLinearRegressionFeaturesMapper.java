@@ -17,7 +17,7 @@ package org.machinelearning4j.dronez.commands;
 
 import org.machinelearning4j.dronez.domain.NumericAction;
 import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.ml4j.FeaturesMapper;
+import org.ml4j.algorithms.FeaturesMapper;
 
 /**
 * <p>Extracts numeric feature vectors from DroneStateAction<PositionVelocity,LeftRightAction> instances that we would like

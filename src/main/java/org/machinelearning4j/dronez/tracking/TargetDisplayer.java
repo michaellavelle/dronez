@@ -3,10 +3,10 @@ package org.machinelearning4j.dronez.tracking;
 import java.awt.image.BufferedImage;
 
 import org.machinelearning4j.dronez.domain.DroneState;
-import org.ml4j.LabeledData;
 import org.ml4j.imaging.FrameDecorator;
 import org.ml4j.imaging.SerializableBufferedImageAdapter;
 import org.ml4j.imaging.tracking.Position3D;
+import org.ml4j.mapping.LabeledData;
 import org.ml4j.mdp.Trajectory;
 
 public class TargetDisplayer

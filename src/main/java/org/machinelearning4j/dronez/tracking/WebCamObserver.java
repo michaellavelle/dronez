@@ -4,7 +4,6 @@ import java.awt.Dimension;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.DroneState;
-import org.ml4j.LabelAssigner;
 import org.ml4j.imaging.FrameSequenceSource;
 import org.ml4j.imaging.SerializableBufferedImageAdapter;
 import org.ml4j.imaging.labeling.LabeledDataFrameUpdateListenerAdapter;
@@ -17,6 +16,7 @@ import org.ml4j.imaging.tracking.MovingTargetPositionEstimator;
 import org.ml4j.imaging.tracking.Position3D;
 import org.ml4j.imaging.tracking.Velocity3D;
 import org.ml4j.imaging.tracking.VelocityFilter;
+import org.ml4j.mapping.LabelAssigner;
 import org.ml4j.mdp.StateActionController;
 import org.ml4j.mdp.Trajectory;
 // TODO

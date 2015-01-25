@@ -17,7 +17,7 @@ package org.machinelearning4j.dronez.policy;
 
 import org.machinelearning4j.dronez.domain.LeftRightAction;
 import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.ml4j.FeaturesMapper;
+import org.ml4j.algorithms.FeaturesMapper;
 import org.ml4j.mdp.StateAction;
 
 /**

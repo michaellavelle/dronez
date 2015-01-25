@@ -2,10 +2,10 @@ package org.machinelearning4j.dronez.tracking;
 
 import java.awt.Point;
 
-import org.ml4j.LabelAssigner;
-import org.ml4j.LabeledData;
 import org.ml4j.imaging.SerializableBufferedImageAdapter;
 import org.ml4j.imaging.tracking.Position3D;
+import org.ml4j.mapping.LabelAssigner;
+import org.ml4j.mapping.LabeledData;
 
 public class DronePositionDetectionPointLabelAssigner implements
 		LabelAssigner<SerializableBufferedImageAdapter, Position3D> {

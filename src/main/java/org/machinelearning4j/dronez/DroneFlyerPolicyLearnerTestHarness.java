@@ -3,8 +3,6 @@ package org.machinelearning4j.dronez;
 import org.machinelearning4j.dronez.commands.CommandFactory;
 import org.machinelearning4j.dronez.commands.DiscreteStateMdpInnerPolicyCommandFactoryImpl;
 import org.machinelearning4j.dronez.commands.HoverCommand;
-import org.machinelearning4j.dronez.commands.LearnedInnerPolicyCommandFactoryImpl;
-import org.machinelearning4j.dronez.commands.NoOpCommand;
 import org.machinelearning4j.dronez.commands.TargetTrajectoryCommand;
 import org.machinelearning4j.dronez.domain.Drone;
 import org.machinelearning4j.dronez.domain.DroneAction;
