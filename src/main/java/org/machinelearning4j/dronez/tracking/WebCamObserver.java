@@ -53,8 +53,11 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 	public WebCamObserver(String directoryPath)
 	{
 		super();
-		VelocityFilter velocityFilter= new FIRVelocityFilter(0,5,300d/1000d);
-		this.movingTargetPositionEstimator = new MovingTargetPositionEstimator(velocityFilter, velocityFilter, velocityFilter);
+		VelocityFilter leftRightVelocityFilter= new FIRVelocityFilter(0,5,300d/1000d);
+		VelocityFilter upDownVelocityFilter= new FIRVelocityFilter(0,5,300d/1000d);
+		VelocityFilter forwardBackVelocityFilter= new FIRVelocityFilter(0,5,300d/1000d);
+
+		this.movingTargetPositionEstimator = new MovingTargetPositionEstimator(leftRightVelocityFilter, upDownVelocityFilter, forwardBackVelocityFilter);
 		this.directoryPath = directoryPath;
 	}
 
