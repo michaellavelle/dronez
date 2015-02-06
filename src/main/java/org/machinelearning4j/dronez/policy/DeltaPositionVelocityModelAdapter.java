@@ -1,8 +1,8 @@
     package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.LeftRightAction;
 import org.machinelearning4j.dronez.domain.PositionDeltaWithVelocity;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.PositionVelocityWithRecentActions;
 import org.ml4j.mdp.Model;
 
 public class DeltaPositionVelocityModelAdapter implements Model<PositionVelocityWithRecentActions<LeftRightAction>,PositionVelocityWithRecentActions<LeftRightAction>, LeftRightAction> {

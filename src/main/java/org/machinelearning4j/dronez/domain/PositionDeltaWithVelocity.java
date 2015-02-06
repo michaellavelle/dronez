@@ -1,5 +1,7 @@
 package org.machinelearning4j.dronez.domain;
 
+import org.ml4j.dronez.PositionVelocity;
+
 public class PositionDeltaWithVelocity extends PositionVelocity {
 
 	/**

@@ -3,42 +3,42 @@ package org.machinelearning4j.dronez.commands;
 import java.io.Serializable;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneStateWithRecentActions;
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocity;
-import org.machinelearning4j.dronez.domain.SpinAction;
-import org.machinelearning4j.dronez.domain.UpDownAction;
+import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
 import org.machinelearning4j.dronez.policy.ForwardBackActionIndexMapper;
 import org.machinelearning4j.dronez.policy.LeftRightActionIndexMapper;
 import org.machinelearning4j.dronez.policy.RelativePositionVelocityIndexMapper;
 import org.machinelearning4j.dronez.policy.SpinActionIndexMapper;
 import org.machinelearning4j.dronez.policy.UpDownActionIndexMapper;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.SpinAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocity;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.IndexedProbabilitiesBuilder;
 import org.ml4j.mdp.StateActionSequenceListener;
 
-public class Probabilities4D implements StateActionSequenceListener<DroneStateWithRecentActions,DroneStateWithRecentActions, DroneAction>,Serializable {
+public class Probabilities4D implements StateActionSequenceListener<TargetRelativeDroneStateWithRecentActions,TargetRelativeDroneStateWithRecentActions, DroneAction>,Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private IndexedProbabilitiesBuilder<PositionVelocity,LeftRightAction> leftRightProbabilitiesBuilder;
-	private IndexedProbabilitiesBuilder<PositionVelocity,UpDownAction> upDownProbabilitiesBuilder;
-	private IndexedProbabilitiesBuilder<PositionVelocity,ForwardBackAction> forwardBackProbabilitiesBuilder;
-	private IndexedProbabilitiesBuilder<PositionVelocity,SpinAction> spinProbabilitiesBuilder;
+	private IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,LeftRightAction> leftRightProbabilitiesBuilder;
+	private IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,UpDownAction> upDownProbabilitiesBuilder;
+	private IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,ForwardBackAction> forwardBackProbabilitiesBuilder;
+	private IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,SpinAction> spinProbabilitiesBuilder;
 
 	
 	public Probabilities4D()
 	{
-		leftRightProbabilitiesBuilder = new IndexedProbabilitiesBuilder<PositionVelocity,LeftRightAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, LeftRightAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new LeftRightActionIndexMapper());
-		upDownProbabilitiesBuilder = new IndexedProbabilitiesBuilder<PositionVelocity,UpDownAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, UpDownAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new UpDownActionIndexMapper());
-		forwardBackProbabilitiesBuilder = new IndexedProbabilitiesBuilder<PositionVelocity,ForwardBackAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, ForwardBackAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new ForwardBackActionIndexMapper());
-		spinProbabilitiesBuilder = new IndexedProbabilitiesBuilder<PositionVelocity,SpinAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, SpinAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new SpinActionIndexMapper());
+		leftRightProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,LeftRightAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, LeftRightAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new LeftRightActionIndexMapper());
+		upDownProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,UpDownAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, UpDownAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new UpDownActionIndexMapper());
+		forwardBackProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,ForwardBackAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, ForwardBackAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new ForwardBackActionIndexMapper());
+		spinProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,SpinAction>(new RelativePositionVelocityIndexMapper().getIndexedValues().length, SpinAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(), new SpinActionIndexMapper());
 
 	}
 	
-	public IndexedProbabilitiesBuilder<PositionVelocity, LeftRightAction> getLeftRightProbabilitiesBuilder() {
+	public IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, LeftRightAction> getLeftRightProbabilitiesBuilder() {
 		return leftRightProbabilitiesBuilder;
 	}
 
@@ -46,40 +46,40 @@ public class Probabilities4D implements StateActionSequenceListener<DroneStateWi
 
 
 	public void setLeftRightProbabilitiesBuilder(
-			IndexedProbabilitiesBuilder<PositionVelocity, LeftRightAction> leftRightProbabilitiesBuilder) {
+			IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, LeftRightAction> leftRightProbabilitiesBuilder) {
 		this.leftRightProbabilitiesBuilder = leftRightProbabilitiesBuilder;
 	}
 
 	public void setUpDownProbabilitiesBuilder(
-			IndexedProbabilitiesBuilder<PositionVelocity, UpDownAction> upDownProbabilitiesBuilder) {
+			IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, UpDownAction> upDownProbabilitiesBuilder) {
 		this.upDownProbabilitiesBuilder = upDownProbabilitiesBuilder;
 	}
 
 	public void setForwardBackProbabilitiesBuilder(
-			IndexedProbabilitiesBuilder<PositionVelocity, ForwardBackAction> forwardBackProbabilitiesBuilder) {
+			IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, ForwardBackAction> forwardBackProbabilitiesBuilder) {
 		this.forwardBackProbabilitiesBuilder = forwardBackProbabilitiesBuilder;
 	}
 
 	public void setSpinProbabilitiesBuilder(
-			IndexedProbabilitiesBuilder<PositionVelocity, SpinAction> spinProbabilitiesBuilder) {
+			IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, SpinAction> spinProbabilitiesBuilder) {
 		this.spinProbabilitiesBuilder = spinProbabilitiesBuilder;
 	}
 
-	public IndexedProbabilitiesBuilder<PositionVelocity, UpDownAction> getUpDownProbabilitiesBuilder() {
+	public IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, UpDownAction> getUpDownProbabilitiesBuilder() {
 		return upDownProbabilitiesBuilder;
 	}
 
 
 
 
-	public IndexedProbabilitiesBuilder<PositionVelocity, ForwardBackAction> getForwardBackProbabilitiesBuilder() {
+	public IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, ForwardBackAction> getForwardBackProbabilitiesBuilder() {
 		return forwardBackProbabilitiesBuilder;
 	}
 
 
 
 
-	public IndexedProbabilitiesBuilder<PositionVelocity, SpinAction> getSpinProbabilitiesBuilder() {
+	public IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, SpinAction> getSpinProbabilitiesBuilder() {
 		return spinProbabilitiesBuilder;
 	}
 
@@ -87,8 +87,8 @@ public class Probabilities4D implements StateActionSequenceListener<DroneStateWi
 
 
 	@Override
-	public void onStateActionStateSequence(long iteration, DroneStateWithRecentActions initial,
-			DroneAction action, DroneStateWithRecentActions end) {
+	public void onStateActionStateSequence(long iteration, TargetRelativeDroneStateWithRecentActions initial,
+			DroneAction action, TargetRelativeDroneStateWithRecentActions end) {
 		
 		leftRightProbabilitiesBuilder.onStateActionStateSequence(iteration, initial.getLeftRightPositionVelocity(), action.getLeftRightAction(), end.getLeftRightPositionVelocity());
 		upDownProbabilitiesBuilder.onStateActionStateSequence(iteration, initial.getUpDownPositionVelocity(), action.getUpDownAction(), end.getUpDownPositionVelocity());

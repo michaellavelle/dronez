@@ -15,7 +15,7 @@
  */
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.PositionVelocity;
+import org.ml4j.dronez.TargetRelativePositionWithVelocity;
 import org.ml4j.mdp.RewardFunction;
 
 /**
@@ -25,7 +25,7 @@ import org.ml4j.mdp.RewardFunction;
  * @author Michael Lavelle
  *
  */
-public class MinimiseTargetRelativePositionRewardFunction implements RewardFunction<PositionVelocity> {
+public class MinimiseTargetRelativePositionRewardFunction implements RewardFunction<TargetRelativePositionWithVelocity> {
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class MinimiseTargetRelativePositionRewardFunction implements RewardFunct
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public double getReward(PositionVelocity state) {
+	public double getReward(TargetRelativePositionWithVelocity state) {
 	
 		//if (Math.abs(state.getPosition()) < 0.25d) return 2000d + 200d/(1d + Math.pow(1 + Math.abs(state.getPosition()),2d)) +1000d/(1d + Math.pow(1 + Math.abs(state.getVelocity()),2d)) ;
 		//if (Math.abs(state.getPosition()) >= 0.25d) return -100d * Math.pow(1 + Math.abs(state.getPosition()),2d) ;

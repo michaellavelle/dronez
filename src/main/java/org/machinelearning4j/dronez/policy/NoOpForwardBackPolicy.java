@@ -1,10 +1,10 @@
 package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.mdp.Policy;
 
-public class NoOpForwardBackPolicy implements Policy<PositionVelocityWithRecentActions<ForwardBackAction>, ForwardBackAction> {
+public class NoOpForwardBackPolicy implements Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> {
 
 	/**
 	 * 
@@ -12,7 +12,7 @@ public class NoOpForwardBackPolicy implements Policy<PositionVelocityWithRecentA
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public ForwardBackAction getAction(PositionVelocityWithRecentActions<ForwardBackAction> arg0) {
+	public ForwardBackAction getAction(TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction> arg0) {
 		return ForwardBackAction.NO_OP;
 	}
 

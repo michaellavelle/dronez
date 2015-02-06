@@ -1,20 +1,20 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.machinelearning4j.dronez.domain.UpDownAction;
 import org.machinelearning4j.dronez.policy.HybridPolicy;
 import org.machinelearning4j.dronez.policy.SimpleForwardBackPolicy;
 import org.machinelearning4j.dronez.policy.SimpleLeftRightPolicy;
 import org.machinelearning4j.dronez.policy.SimpleUpDownPolicy;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Policy;
 
 public abstract class AbstractInnerOuterRegionPolicyCommandFactory extends AbstractIndependentDimensionsCommandFactory {
 
-	private Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> outerLeftRightPolicy;
-	private Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> outerUpDownPolicy;
-	private Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> outerForwardBackPolicy;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> outerLeftRightPolicy;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> outerUpDownPolicy;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> outerForwardBackPolicy;
 	
 	private double boundary;
 	
@@ -29,22 +29,22 @@ public abstract class AbstractInnerOuterRegionPolicyCommandFactory extends Abstr
 	}
 
 	
-	protected abstract Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy();
-	protected abstract Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy();
-	protected abstract Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy();
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy();
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy();
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy();
 
 	
-	protected Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetPolicy()
 	{
 		return new HybridPolicy<LeftRightAction>(createLeftRightDistanceToTargetInnerPolicy(),outerLeftRightPolicy,boundary);
 	}
 	
-	protected Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetPolicy()
 	{
 		return new HybridPolicy<UpDownAction>(createUpDownDistanceToTargetInnerPolicy(),outerUpDownPolicy,boundary);
 	}
 	
-	protected Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetPolicy()
 	{
 		return new HybridPolicy<ForwardBackAction>(createForwardBackDistanceToTargetInnerPolicy(),outerForwardBackPolicy,boundary);
 	}

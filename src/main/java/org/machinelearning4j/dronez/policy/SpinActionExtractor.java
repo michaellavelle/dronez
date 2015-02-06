@@ -3,7 +3,7 @@ package org.machinelearning4j.dronez.policy;
 import java.util.List;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.SpinAction;
+import org.ml4j.dronez.SpinAction;
 
 public class SpinActionExtractor implements ActionExtractor<SpinAction> {
 

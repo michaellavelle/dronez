@@ -1,14 +1,14 @@
 package org.machinelearning4j.dronez.policy;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneStateWithRecentActions;
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.SpinAction;
-import org.machinelearning4j.dronez.domain.UpDownAction;
+import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.SpinAction;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Policy;
 
-public class NoOpPolicy implements Policy<DroneStateWithRecentActions, DroneAction> {
+public class NoOpPolicy implements Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class NoOpPolicy implements Policy<DroneStateWithRecentActions, DroneActi
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public DroneAction getAction(DroneStateWithRecentActions droneState) {
+	public DroneAction getAction(TargetRelativeDroneStateWithRecentActions droneState) {
 		return new DroneAction(LeftRightAction.NO_OP,UpDownAction.NO_OP,ForwardBackAction.NO_OP,SpinAction.NO_OP);
 	}
 

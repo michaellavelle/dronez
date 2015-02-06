@@ -2,6 +2,11 @@ package org.machinelearning4j.dronez.domain;
 
 import java.io.Serializable;
 
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.SpinAction;
+import org.ml4j.dronez.UpDownAction;
+
 
 public class DroneAction implements Serializable {
 

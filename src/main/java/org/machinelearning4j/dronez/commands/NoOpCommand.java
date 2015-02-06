@@ -2,16 +2,16 @@ package org.machinelearning4j.dronez.commands;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.DroneState;
-import org.machinelearning4j.dronez.domain.DroneStateWithRecentActions;
-import org.machinelearning4j.dronez.domain.PositionVelocity;
+import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
 import org.machinelearning4j.dronez.policy.DistanceToTargetPositionsPolicyStateMapper;
 import org.machinelearning4j.dronez.policy.NoOpPolicy;
+import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.mdp.Policy;
 import org.ml4j.mdp.PolicyStateMapper;
 import org.ml4j.mdp.StateActionSequenceHistory;
 import org.ml4j.mdp.Trajectory;
 
-public class NoOpCommand extends AbstractPolicyCommand<DroneState, DroneStateWithRecentActions, DroneAction> {
+public class NoOpCommand extends AbstractPolicyCommand<DroneState, TargetRelativeDroneStateWithRecentActions, DroneAction> {
 
 	private StateActionSequenceHistory<?,?,DroneAction> history;
 	private Trajectory<DroneState> trajectory;
@@ -29,12 +29,12 @@ public class NoOpCommand extends AbstractPolicyCommand<DroneState, DroneStateWit
 	}
 	
 	@Override
-	public Policy<DroneStateWithRecentActions, DroneAction> getPolicy() {
+	public Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> getPolicy() {
 		return new NoOpPolicy();
 	}
 
 	@Override
-	public PolicyStateMapper<DroneState, DroneStateWithRecentActions> getPolicyStateMapper() {
+	public PolicyStateMapper<DroneState, TargetRelativeDroneStateWithRecentActions> getPolicyStateMapper() {
 		return new DistanceToTargetPositionsPolicyStateMapper(trajectory,history);
 	}
 

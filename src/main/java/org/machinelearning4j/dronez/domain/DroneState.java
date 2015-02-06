@@ -2,6 +2,8 @@ package org.machinelearning4j.dronez.domain;
 
 import java.io.Serializable;
 
+import org.ml4j.dronez.PositionVelocity;
+
 
 public class DroneState implements Serializable {
 

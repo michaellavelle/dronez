@@ -1,5 +1,8 @@
 package org.machinelearning4j.dronez.domain;
 
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.PositionVelocityWithRecentActions;
+
 public class PositionVelocityWithRecentLeftRightActions extends
 		PositionVelocityWithRecentActions<LeftRightAction> {
 

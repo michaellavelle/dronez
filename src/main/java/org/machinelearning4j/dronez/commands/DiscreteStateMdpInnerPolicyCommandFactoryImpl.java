@@ -1,17 +1,16 @@
 package org.machinelearning4j.dronez.commands;
 
-import java.io.Serializable;
-
 import org.machinelearning4j.dronez.domain.DroneState;
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocity;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.machinelearning4j.dronez.domain.UpDownAction;
 import org.machinelearning4j.dronez.policy.ForwardBackActionIndexMapper;
 import org.machinelearning4j.dronez.policy.LeftRightActionIndexMapper;
 import org.machinelearning4j.dronez.policy.RelativePositionVelocityIndexMapper;
 import org.machinelearning4j.dronez.policy.UpDownActionIndexMapper;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.NumericAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocity;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.DiscreteIndexedStateMarkovDecisionProcessAdapter;
 import org.ml4j.mdp.DiscreteStateMarkovDecisionProcess;
 import org.ml4j.mdp.IndexMapper;
@@ -25,9 +24,9 @@ import org.ml4j.util.SerializationHelper;
 
 public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegionPolicyCommandFactory {
 
-	private DiscreteIndexedStateMarkovDecisionProcessAdapter<PositionVelocity,LeftRightAction> learnedLeftRightMdp;
-	private DiscreteIndexedStateMarkovDecisionProcessAdapter<PositionVelocity,UpDownAction> learnedUpDownMdp;
-	private DiscreteIndexedStateMarkovDecisionProcessAdapter<PositionVelocity,ForwardBackAction> learnedForwardBackMdp;
+	private DiscreteIndexedStateMarkovDecisionProcessAdapter<TargetRelativePositionWithVelocity,LeftRightAction> learnedLeftRightMdp;
+	private DiscreteIndexedStateMarkovDecisionProcessAdapter<TargetRelativePositionWithVelocity,UpDownAction> learnedUpDownMdp;
+	private DiscreteIndexedStateMarkovDecisionProcessAdapter<TargetRelativePositionWithVelocity,ForwardBackAction> learnedForwardBackMdp;
 	
 	private SerializationHelper serializationHelper;
 	
@@ -78,17 +77,17 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 
 
 		@Override
-		protected Policy<PositionVelocityWithRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
+		protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
 			return createSingleDimensionDistanceToTargetPolicy(this.learnedLeftRightMdp,LeftRightAction.ALL_ACTIONS);
 		}
 
 		@Override
-		protected Policy<PositionVelocityWithRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetInnerPolicy() {
+		protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetInnerPolicy() {
 			return createSingleDimensionDistanceToTargetPolicy(this.learnedUpDownMdp,UpDownAction.ALL_ACTIONS);
 		}
 
 		@Override
-		protected Policy<PositionVelocityWithRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy() {
+		protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy() {
 			return createSingleDimensionDistanceToTargetPolicy(this.learnedForwardBackMdp,ForwardBackAction.ALL_ACTIONS);
 		}
 
@@ -117,33 +116,35 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 
 
 
-		private <A extends Serializable> DiscreteIndexedStateMarkovDecisionProcessAdapter<PositionVelocity, A> createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(A[] actions,IndexMapper<A> indexMapper,IndexedProbabilitiesBuilder<PositionVelocity,A> probabilitiesBuilder) {
+		private <A extends NumericAction> DiscreteIndexedStateMarkovDecisionProcessAdapter<TargetRelativePositionWithVelocity, A> createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(A[] actions,IndexMapper<A> indexMapper,IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity,A> probabilitiesBuilder) {
 			
 			RelativePositionVelocityIndexMapper stateIndexMapper
 			 = new RelativePositionVelocityIndexMapper();
 			
-			RewardFunction<PositionVelocity> rewardFunction
+			RewardFunction<TargetRelativePositionWithVelocity> rewardFunction
 			 = new MinimiseTargetRelativePositionRewardFunction();
 			
-			Policy<PositionVelocity,A> initialPolicy
-			 = new RandomPolicy<PositionVelocity,A>(actions);
+			Policy<TargetRelativePositionWithVelocity,A> initialPolicy
+			 = new RandomPolicy<TargetRelativePositionWithVelocity,A>(actions);
 			//= new SimpleLeftRightPolicy2();
 		
-			return new DiscreteIndexedStateMarkovDecisionProcessAdapter<PositionVelocity,A>(stateIndexMapper,indexMapper,rewardFunction,new ZeroValueFunction<Integer>(),probabilitiesBuilder,initialPolicy);
+			return new DiscreteIndexedStateMarkovDecisionProcessAdapter<TargetRelativePositionWithVelocity,A>(stateIndexMapper,indexMapper,rewardFunction,new ZeroValueFunction<Integer>(),probabilitiesBuilder,initialPolicy);
 		}
 		
-		protected <A extends Serializable> Policy<PositionVelocityWithRecentActions<A>,A> createSingleDimensionDistanceToTargetPolicy(final DiscreteStateMarkovDecisionProcess<PositionVelocity,A> mdp,A[] actions)
+		protected <A extends NumericAction> Policy<TargetRelativePositionWithVelocityAndRecentActions<A>,A> createSingleDimensionDistanceToTargetPolicy(final DiscreteStateMarkovDecisionProcess<TargetRelativePositionWithVelocity,A> mdp,A[] actions)
 		{
-			final Policy<PositionVelocity, A> mdpPolicy = mdp.getPolicy();
-			return new Policy<PositionVelocityWithRecentActions<A>,A>()
+			final Policy<TargetRelativePositionWithVelocity, A> mdpPolicy = mdp.getPolicy();
+			return new Policy<TargetRelativePositionWithVelocityAndRecentActions<A>,A>()
 					{
 						private static final long serialVersionUID = 1L;
 
 						@Override
 						public A getAction(
-								PositionVelocityWithRecentActions<A> arg0) {
+								TargetRelativePositionWithVelocityAndRecentActions<A> arg0) {
 							return mdpPolicy.getAction(arg0);
 						}
+
+						
 				
 					};
 		}

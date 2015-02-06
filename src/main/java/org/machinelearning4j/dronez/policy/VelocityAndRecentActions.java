@@ -2,8 +2,8 @@ package org.machinelearning4j.dronez.policy;
 
 import java.io.Serializable;
 
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.PositionVelocityWithRecentActions;
 
 public class VelocityAndRecentActions implements Serializable  {
 

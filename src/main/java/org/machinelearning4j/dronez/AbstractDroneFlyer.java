@@ -8,13 +8,13 @@ import org.machinelearning4j.dronez.commands.CommandFactory;
 import org.machinelearning4j.dronez.domain.Drone;
 import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.DroneState;
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocity;
-import org.machinelearning4j.dronez.domain.UpDownAction;
 import org.machinelearning4j.dronez.mock.MockDroneDimensionModel;
 import org.machinelearning4j.dronez.mock.MockDroneModel;
 import org.machinelearning4j.dronez.util.DronePositionPrinter;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.PositionVelocity;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Model;
 import org.ml4j.mdp.StateObserver;
 

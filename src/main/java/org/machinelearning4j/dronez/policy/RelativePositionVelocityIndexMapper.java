@@ -2,12 +2,12 @@ package org.machinelearning4j.dronez.policy;
 
 import java.io.Serializable;
 
-import org.machinelearning4j.dronez.domain.PositionVelocity;
+import org.ml4j.dronez.TargetRelativePositionWithVelocity;
 import org.ml4j.mdp.ContinuousDimension;
 import org.ml4j.mdp.Dimension;
 import org.ml4j.mdp.IndexMapper;
 
-public class RelativePositionVelocityIndexMapper implements IndexMapper<PositionVelocity>,Serializable{
+public class RelativePositionVelocityIndexMapper implements IndexMapper<TargetRelativePositionWithVelocity>,Serializable{
 
 
 	/**
@@ -24,17 +24,17 @@ public class RelativePositionVelocityIndexMapper implements IndexMapper<Position
 	}
 
 	
-	public PositionVelocity[] getIndexedValues()
+	public TargetRelativePositionWithVelocity[] getIndexedValues()
 	{
 		Double[] velocities = velocityDimension.getIndexedValues();
 		Double[] positions = positionDimension.getIndexedValues();
-		PositionVelocity[] indexedValues = new PositionVelocity[velocities.length * positions.length];
+		TargetRelativePositionWithVelocity[] indexedValues = new TargetRelativePositionWithVelocity[velocities.length * positions.length];
 		int index =0;
 		for (Double position : positions)
 		{
 			for (Double vel : velocities)
 			{
-				indexedValues[index++] = new PositionVelocity(position,vel);
+				indexedValues[index++] = new TargetRelativePositionWithVelocity(position,vel);
 			}
 		}
 		return indexedValues;
@@ -43,7 +43,7 @@ public class RelativePositionVelocityIndexMapper implements IndexMapper<Position
 	
 	
 	@Override
-	public int getIndex(PositionVelocity data) {
+	public int getIndex(TargetRelativePositionWithVelocity data) {
 		
 		int posIndex = positionDimension.getIndex(data.getPosition());
 		int velIndex = velocityDimension.getIndex(data.getVelocity());

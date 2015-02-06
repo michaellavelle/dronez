@@ -1,28 +1,28 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.machinelearning4j.dronez.domain.UpDownAction;
 import org.machinelearning4j.dronez.policy.SimpleForwardBackPolicy;
 import org.machinelearning4j.dronez.policy.SimpleLeftRightPolicy;
 import org.machinelearning4j.dronez.policy.SimpleUpDownPolicy;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Policy;
 
 public class SimpleInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegionPolicyCommandFactory {
 
 	
-	protected Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
 	{
 		return new SimpleLeftRightPolicy();
 	}
 	
-	protected Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
 	{
 		return new SimpleUpDownPolicy();
 	}
 	
-	protected Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy()
 	{
 		return new SimpleForwardBackPolicy();
 	}

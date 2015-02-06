@@ -1,35 +1,35 @@
 package org.machinelearning4j.dronez.commands;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneStateWithRecentActions;
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.machinelearning4j.dronez.domain.SpinAction;
-import org.machinelearning4j.dronez.domain.UpDownAction;
+import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
 import org.machinelearning4j.dronez.policy.IndependentDimensionsTargetTrajectoryPolicy;
 import org.machinelearning4j.dronez.policy.NoOpSpinPolicy;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.SpinAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Policy;
 
 public abstract class AbstractIndependentDimensionsCommandFactory extends
 		AbstractCommandFactory {
 
 	
-	protected Policy<DroneStateWithRecentActions, DroneAction> createDistanceToTargetPolicy() {
+	protected Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> createDistanceToTargetPolicy() {
 		return new IndependentDimensionsTargetTrajectoryPolicy(createLeftRightDistanceToTargetPolicy(),
 				createUpDownDistanceToTargetPolicy(),createForwardBackDistanceToTargetPolicy(),createSpinDistanceToTargetPolicy());
 	}
 		
-	protected abstract Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetPolicy();
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetPolicy();
 
-	protected Policy<PositionVelocityWithRecentActions<SpinAction>,SpinAction> createSpinDistanceToTargetPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<SpinAction>,SpinAction> createSpinDistanceToTargetPolicy()
 	{
 		return new NoOpSpinPolicy();
 	}
 	
 	
-	protected abstract Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetPolicy();
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetPolicy();
 		
-	protected abstract Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetPolicy();
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetPolicy();
 
 }

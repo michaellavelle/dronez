@@ -1,33 +1,33 @@
 package org.machinelearning4j.dronez.policy;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneStateWithRecentActions;
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.machinelearning4j.dronez.domain.SpinAction;
-import org.machinelearning4j.dronez.domain.UpDownAction;
+import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.SpinAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Policy;
 
 public class IndependentDimensionsTargetTrajectoryPolicy implements
-		Policy<DroneStateWithRecentActions, DroneAction> {
+		Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> leftRightTargetTrajectoryPolicy;
-	private Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> upDownTargetTrajectoryPolicy;
-	private Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> forwardBackTargetTrajectoryPolicy;
-	private Policy<PositionVelocityWithRecentActions<SpinAction>,SpinAction> spinTargetTrajectoryPolicy;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> leftRightTargetTrajectoryPolicy;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> upDownTargetTrajectoryPolicy;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> forwardBackTargetTrajectoryPolicy;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<SpinAction>,SpinAction> spinTargetTrajectoryPolicy;
 
 	
 	public IndependentDimensionsTargetTrajectoryPolicy(
-			Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> leftRightTargetTrajectoryPolicy,
-			Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> upDownTargetTrajectoryPolicy,
-			Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> forwardBackTargetTrajectoryPolicy,
-			Policy<PositionVelocityWithRecentActions<SpinAction>,SpinAction> spinTargetTrajectoryPolicy)
+			Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> leftRightTargetTrajectoryPolicy,
+			Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> upDownTargetTrajectoryPolicy,
+			Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> forwardBackTargetTrajectoryPolicy,
+			Policy<TargetRelativePositionWithVelocityAndRecentActions<SpinAction>,SpinAction> spinTargetTrajectoryPolicy)
 	{
 		this.leftRightTargetTrajectoryPolicy = leftRightTargetTrajectoryPolicy;
 		this.upDownTargetTrajectoryPolicy = upDownTargetTrajectoryPolicy;
@@ -35,7 +35,7 @@ public class IndependentDimensionsTargetTrajectoryPolicy implements
 		this.spinTargetTrajectoryPolicy = spinTargetTrajectoryPolicy;
 	}
 	@Override
-	public DroneAction getAction(DroneStateWithRecentActions droneState) {
+	public DroneAction getAction(TargetRelativeDroneStateWithRecentActions droneState) {
 
 		LeftRightAction leftRightAction = leftRightTargetTrajectoryPolicy.getAction(droneState.getLeftRightPositionVelocity());
 		UpDownAction upDownAction = upDownTargetTrajectoryPolicy.getAction(droneState.getUpDownPositionVelocity());

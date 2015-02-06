@@ -1,6 +1,6 @@
 package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.SpinAction;
+import org.ml4j.dronez.SpinAction;
 import org.ml4j.mdp.IndexMapper;
 
 public class SpinActionIndexMapper implements IndexMapper<SpinAction> {

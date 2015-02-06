@@ -1,10 +1,10 @@
 package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.mdp.Policy;
 
-public class NoOpLeftRightPolicy implements Policy<PositionVelocityWithRecentActions<LeftRightAction>, LeftRightAction> {
+public class NoOpLeftRightPolicy implements Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> {
 
 	/**
 	 * 
@@ -12,7 +12,7 @@ public class NoOpLeftRightPolicy implements Policy<PositionVelocityWithRecentAct
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public LeftRightAction getAction(PositionVelocityWithRecentActions<LeftRightAction> arg0) {
+	public LeftRightAction getAction(TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction> arg0) {
 		return LeftRightAction.NO_OP;
 	}
 

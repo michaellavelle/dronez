@@ -1,11 +1,10 @@
 package org.machinelearning4j.dronez.policy;
 
-import java.io.Serializable;
-
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
+import org.ml4j.dronez.NumericAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.mdp.Policy;
 
-public class HybridPolicy<A extends Serializable> implements Policy<PositionVelocityWithRecentActions<A>, A> {
+public class HybridPolicy<A extends NumericAction> implements Policy<TargetRelativePositionWithVelocityAndRecentActions<A>, A> {
 
 	/**
 	 * 
@@ -13,11 +12,11 @@ public class HybridPolicy<A extends Serializable> implements Policy<PositionVelo
 	private static final long serialVersionUID = 1L;
 	
 	
-	private Policy<PositionVelocityWithRecentActions<A>, A> outer;
-	private Policy<PositionVelocityWithRecentActions<A>, A> inner;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<A>, A> outer;
+	private Policy<TargetRelativePositionWithVelocityAndRecentActions<A>, A> inner;
 	private double boundary;
 	
-	public HybridPolicy(Policy<PositionVelocityWithRecentActions<A>, A> inner,Policy<PositionVelocityWithRecentActions<A>, A> outer,double boundary)
+	public HybridPolicy(Policy<TargetRelativePositionWithVelocityAndRecentActions<A>, A> inner,Policy<TargetRelativePositionWithVelocityAndRecentActions<A>, A> outer,double boundary)
 	{
 		this.inner = inner;
 		this.outer = outer;
@@ -27,7 +26,7 @@ public class HybridPolicy<A extends Serializable> implements Policy<PositionVelo
 
 
 	@Override
-	public A getAction(PositionVelocityWithRecentActions<A> state) {
+	public A getAction(TargetRelativePositionWithVelocityAndRecentActions<A> state) {
 		return Math.abs(state.getPosition()) < boundary ? inner.getAction(state) : outer.getAction(state);
 	}
 

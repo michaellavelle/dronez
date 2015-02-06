@@ -1,6 +1,6 @@
 package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.LeftRightAction;
+import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.mdp.IndexMapper;
 
 public class LeftRightActionIndexMapper implements IndexMapper<LeftRightAction> {

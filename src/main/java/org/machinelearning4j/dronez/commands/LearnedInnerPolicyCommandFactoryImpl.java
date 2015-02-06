@@ -1,9 +1,9 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.ForwardBackAction;
-import org.machinelearning4j.dronez.domain.LeftRightAction;
-import org.machinelearning4j.dronez.domain.PositionVelocityWithRecentActions;
-import org.machinelearning4j.dronez.domain.UpDownAction;
+import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.IndexedStatePolicyAdapter;
 import org.ml4j.mdp.Policy;
 import org.ml4j.util.SerializationHelper;
@@ -24,21 +24,21 @@ public class LearnedInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegi
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Policy<PositionVelocityWithRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
 	{
 		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "leftRightPolicy");
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Policy<PositionVelocityWithRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
 	{
 		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "upDownPolicy");
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Policy<PositionVelocityWithRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy()
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy()
 	{
 		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "forwardBackPolicy");
 	}

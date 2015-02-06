@@ -2,8 +2,8 @@ package org.machinelearning4j.dronez.mock;
 
 import java.util.Random;
 
-import org.machinelearning4j.dronez.domain.NumericAction;
-import org.machinelearning4j.dronez.domain.PositionVelocity;
+import org.ml4j.dronez.NumericAction;
+import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.mdp.Model;
 
 public class MockDroneDimensionModel<A extends NumericAction> implements Model<PositionVelocity,PositionVelocity,A>{

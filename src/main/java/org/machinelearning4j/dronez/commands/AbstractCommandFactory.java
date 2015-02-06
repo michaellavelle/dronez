@@ -2,14 +2,14 @@ package org.machinelearning4j.dronez.commands;
 
 import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.DroneState;
-import org.machinelearning4j.dronez.domain.DroneStateWithRecentActions;
+import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
 import org.ml4j.mdp.Policy;
 import org.ml4j.mdp.StateActionSequenceHistory;
 import org.ml4j.mdp.Trajectory;
 
 public abstract class AbstractCommandFactory implements CommandFactory {
 	
-	protected Policy<DroneStateWithRecentActions,DroneAction> distanceToTargetPolicy;
+	protected Policy<TargetRelativeDroneStateWithRecentActions,DroneAction> distanceToTargetPolicy;
 	
 	private StateActionSequenceHistory<DroneState,DroneState,DroneAction> history;
 	
@@ -29,7 +29,7 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 		
 	
 	
-	protected abstract Policy<DroneStateWithRecentActions, DroneAction> createDistanceToTargetPolicy();
+	protected abstract Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> createDistanceToTargetPolicy();
 
 
 

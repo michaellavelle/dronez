@@ -1,6 +1,6 @@
 package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.UpDownAction;
+import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.IndexMapper;
 
 public class UpDownActionIndexMapper implements IndexMapper<UpDownAction> {
