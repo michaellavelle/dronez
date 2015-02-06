@@ -10,7 +10,6 @@ import org.machinelearning4j.dronez.domain.DroneState;
 import org.machinelearning4j.dronez.domain.ODCDrone;
 import org.machinelearning4j.dronez.domain.PositionVelocity;
 import org.machinelearning4j.dronez.mock.MockDrone;
-import org.machinelearning4j.dronez.mock.MockDroneModel;
 import org.machinelearning4j.dronez.mock.MockWebCamObserver;
 import org.machinelearning4j.dronez.tracking.AbstractWebCamObserver;
 import org.machinelearning4j.dronez.tracking.WebCamObserver;
@@ -34,6 +33,8 @@ public class DroneFlyerPolicyLearnerTestHarness extends AbstractDroneFlyer{
 			StateObserver<DroneState> droneObserver,CommandFactory commandFactory) {
 		super(drone, droneObserver,commandFactory);
 	}
+	
+	
 	
 	public static void main(String[] args) {
 
@@ -63,7 +64,7 @@ public class DroneFlyerPolicyLearnerTestHarness extends AbstractDroneFlyer{
 			// Create a mock drone instance, with 0 iteration delay between action instruction and
 			// action effect
 			
-			Model<DroneState,DroneState,DroneAction> mockModel = new MockDroneModel();
+			Model<DroneState,DroneState,DroneAction> mockModel = createMockDroneModel();
 			
 			Drone drone = new MockDrone(mockWebCamObserver,mockModel,0,30);
 			

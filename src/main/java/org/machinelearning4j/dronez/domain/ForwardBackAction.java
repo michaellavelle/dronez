@@ -1,6 +1,6 @@
 package org.machinelearning4j.dronez.domain;
 
-public enum ForwardBackAction {
+public enum ForwardBackAction implements NumericAction {
 	
 	BACK,NO_OP,FORWARD;
 	

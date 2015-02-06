@@ -1,107 +1,55 @@
 package org.machinelearning4j.dronez.mock;
 
-import java.util.Random;
-
 import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.DroneState;
+import org.machinelearning4j.dronez.domain.ForwardBackAction;
+import org.machinelearning4j.dronez.domain.LeftRightAction;
 import org.machinelearning4j.dronez.domain.PositionVelocity;
+import org.machinelearning4j.dronez.domain.UpDownAction;
 import org.ml4j.mdp.Model;
 
-public class MockDroneModel implements
-		Model<DroneState, DroneState, DroneAction> {
+public class MockDroneModel implements Model<DroneState, DroneState, DroneAction>{
 
+	
+	private Model<PositionVelocity, PositionVelocity, LeftRightAction> leftRightModel;
+	private Model<PositionVelocity, PositionVelocity, UpDownAction> upDownModel;
+	private Model<PositionVelocity, PositionVelocity, ForwardBackAction> forwardBackModel;
+
+	/*
+	public MockDroneModel2()
+	{
+		this(new MockDroneDimensionModel<LeftRightAction>(-2.5,2.5,false),new MockDroneDimensionModel<UpDownAction>(-2.5,2.5,true),new MockDroneDimensionModel<ForwardBackAction>(0,4,false));
+	}
+	*/
+
+	public MockDroneModel(Model<PositionVelocity, PositionVelocity, LeftRightAction> leftRightModel,Model<PositionVelocity, PositionVelocity, UpDownAction> upDownModel,Model<PositionVelocity, PositionVelocity, ForwardBackAction> forwardBackModel)
+	{
+		this.leftRightModel = leftRightModel;
+		this.upDownModel = upDownModel;
+		this.forwardBackModel = forwardBackModel;
+	}
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
+	// TODO
 	public DroneState getInitialState() {
-		// TODO
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	private double generateNoise(double noiseMean, double noiseStdDev) {
-		Random random = new Random();
-
-		double randomNoise = random.nextGaussian() * noiseStdDev + noiseMean;
-		return randomNoise;
-	}
-
 	@Override
-	public DroneState getState(DroneState currentState, DroneAction action) {
-		double previousLeftRightPosition = currentState
-				.getLeftRightPositionVelocity().getPosition();
+	public DroneState getState(DroneState arg0, DroneAction arg1) {
+		
+		PositionVelocity leftRightPositionVelocity = leftRightModel.getState(arg0.getLeftRightPositionVelocity(), arg1.getLeftRightAction());
+		PositionVelocity upDownPositionVelocity = upDownModel.getState(arg0.getUpDownPositionVelocity(), arg1.getUpDownAction());
+		PositionVelocity forwardBackPositionVelocity = forwardBackModel.getState(arg0.getForwardBackPositionVelocity(), arg1.getForwardBackAction());
 
-		double previousUpDownPosition = currentState
-				.getUpDownPositionVelocity().getPosition();
-
-		double previousForwardBackPosition = currentState
-				.getForwardBackPositionVelocity().getPosition();
-
-		double previousLeftRightVelocity = currentState
-				.getLeftRightPositionVelocity().getVelocity();
-		double previousUpDownVelocity = currentState
-				.getUpDownPositionVelocity().getVelocity();
-
-		double previousForwardBackVelocity = currentState
-				.getForwardBackPositionVelocity().getVelocity();
-
-		double newLeftRightVelocity = 0.9 * previousLeftRightVelocity + 0.35
-				* action.getLeftRightAction().getValue();
-
-		double newUpDownVelocity = 0.9 * previousUpDownVelocity - 0.35
-				* action.getUpDownAction().getValue();
-
-		double newForwardBackVelocity = 0.9 * previousForwardBackVelocity + 0.35
-				* action.getForwardBackAction().getValue();
-
-		double time = 1;
-
-		double newLeftRightPosition = previousLeftRightPosition + time
-				* (newLeftRightVelocity + previousLeftRightVelocity) / 2;
-
-		double newUpDownPosition = previousUpDownPosition + time
-				* (newUpDownVelocity + previousUpDownVelocity) / 2;
-
-		double newForwardBackPosition = previousForwardBackPosition + time
-				* (newForwardBackVelocity + previousForwardBackVelocity) / 2;
-
-		newLeftRightPosition = newLeftRightPosition + generateNoise(0, 0.04);
-		newUpDownPosition = newUpDownPosition + generateNoise(0, 0.04);
-		newForwardBackPosition = newForwardBackPosition
-				+ generateNoise(0, 0.04);
-
-		if (newLeftRightPosition > 2.5) {
-			newLeftRightPosition = 2.5;
-		}
-
-		if (newLeftRightPosition < -2.5) {
-			newLeftRightPosition = -2.5;
-		}
-
-		if (newUpDownPosition > 2.5) {
-			newUpDownPosition = 2.5;
-		}
-
-		if (newUpDownPosition < -2.5) {
-			newUpDownPosition = -2.5;
-		}
-
-
-		if (newForwardBackPosition < 0) {
-			newForwardBackPosition = 0;
-		}
-
-		if (newForwardBackPosition > 4) {
-			newForwardBackPosition = 4;
-		}
-
-		return new DroneState(new PositionVelocity(newLeftRightPosition,
-				newLeftRightVelocity), new PositionVelocity(newUpDownPosition,
-				newUpDownVelocity), new PositionVelocity(
-				newForwardBackPosition, newForwardBackVelocity),
-				currentState.getSpinPositionVelocity());
+		
+		return new DroneState(leftRightPositionVelocity,upDownPositionVelocity,forwardBackPositionVelocity,arg0.getSpinPositionVelocity());
 	}
 
 }

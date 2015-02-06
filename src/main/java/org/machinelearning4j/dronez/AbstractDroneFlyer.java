@@ -6,8 +6,16 @@ import java.util.logging.Logger;
 
 import org.machinelearning4j.dronez.commands.CommandFactory;
 import org.machinelearning4j.dronez.domain.Drone;
+import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.DroneState;
+import org.machinelearning4j.dronez.domain.ForwardBackAction;
+import org.machinelearning4j.dronez.domain.LeftRightAction;
+import org.machinelearning4j.dronez.domain.PositionVelocity;
+import org.machinelearning4j.dronez.domain.UpDownAction;
+import org.machinelearning4j.dronez.mock.MockDroneDimensionModel;
+import org.machinelearning4j.dronez.mock.MockDroneModel;
 import org.machinelearning4j.dronez.util.DronePositionPrinter;
+import org.ml4j.mdp.Model;
 import org.ml4j.mdp.StateObserver;
 
 
@@ -28,6 +36,20 @@ public abstract class AbstractDroneFlyer {
 		{
 			handler.setLevel(Level.SEVERE);
 		}
+	}
+	
+	protected static Model<DroneState,DroneState,DroneAction> createMockDroneModel()
+	{
+		Model<PositionVelocity, PositionVelocity, LeftRightAction> mockLeftRightModel 
+		 = new MockDroneDimensionModel<LeftRightAction>(-2.5,2.5,false);
+		
+		Model<PositionVelocity, PositionVelocity, UpDownAction> mockUpDownModel 
+		 = new MockDroneDimensionModel<UpDownAction>(-2.5,2.5,true);
+		
+		Model<PositionVelocity, PositionVelocity, ForwardBackAction> mockForwardBackModel 
+		 = new MockDroneDimensionModel<ForwardBackAction>(0,4,false);
+		
+		return new MockDroneModel(mockLeftRightModel,mockUpDownModel,mockForwardBackModel);
 	}
 	
 	
