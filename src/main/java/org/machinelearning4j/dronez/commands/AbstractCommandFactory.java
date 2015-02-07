@@ -11,7 +11,7 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 	
 	protected Policy<TargetRelativeDroneStateWithRecentActions,DroneAction> distanceToTargetPolicy;
 	
-	private StateActionSequenceHistory<DroneState,DroneState,DroneAction> history;
+	protected StateActionSequenceHistory<DroneState,DroneState,DroneAction> history;
 	
 	
 	public void init()

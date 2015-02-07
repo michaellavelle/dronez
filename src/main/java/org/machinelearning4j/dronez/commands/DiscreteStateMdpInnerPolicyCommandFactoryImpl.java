@@ -71,6 +71,7 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 			serializationHelper.serialize(learnedUpDownMdp, "upDownMdp");
 			serializationHelper.serialize(learnedForwardBackMdp, "forwardBackMdp");
 			serializationHelper.serialize(probabilities4D, "probabilities");
+			serializationHelper.serialize(history, "stateActionHistory");
 
 		}
 	}
