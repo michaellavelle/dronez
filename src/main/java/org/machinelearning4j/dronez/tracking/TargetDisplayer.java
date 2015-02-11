@@ -2,7 +2,7 @@ package org.machinelearning4j.dronez.tracking;
 
 import java.awt.image.BufferedImage;
 
-import org.machinelearning4j.dronez.domain.DroneState;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.imaging.FrameDecorator;
 import org.ml4j.imaging.SerializableBufferedImageAdapter;
 import org.ml4j.imaging.tracking.Position3D;

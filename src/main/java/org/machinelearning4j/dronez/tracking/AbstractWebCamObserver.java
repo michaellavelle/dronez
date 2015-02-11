@@ -2,7 +2,7 @@ package org.machinelearning4j.dronez.tracking;
 
 import java.awt.Point;
 
-import org.machinelearning4j.dronez.domain.DroneState;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.imaging.tracking.Position3D;
 import org.ml4j.imaging.tracking.Velocity3D;

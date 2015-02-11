@@ -1,7 +1,7 @@
 package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
 import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
+import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.ForwardBackAction;
 import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.dronez.SpinAction;

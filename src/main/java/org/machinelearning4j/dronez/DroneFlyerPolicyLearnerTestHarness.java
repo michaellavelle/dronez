@@ -5,14 +5,14 @@ import org.machinelearning4j.dronez.commands.DiscreteStateMdpInnerPolicyCommandF
 import org.machinelearning4j.dronez.commands.HoverCommand;
 import org.machinelearning4j.dronez.commands.TargetTrajectoryCommand;
 import org.machinelearning4j.dronez.domain.Drone;
-import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneState;
 import org.machinelearning4j.dronez.domain.ODCDrone;
 import org.machinelearning4j.dronez.mock.MockDrone;
 import org.machinelearning4j.dronez.mock.MockWebCamObserver;
 import org.machinelearning4j.dronez.tracking.AbstractWebCamObserver;
 import org.machinelearning4j.dronez.tracking.WebCamObserver;
 import org.machinelearning4j.dronez.trajectory.CircleTrajectory;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.mdp.Model;
 import org.ml4j.mdp.StateObserver;

@@ -2,7 +2,7 @@ package org.machinelearning4j.dronez.policy;
 
 import java.util.List;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
+import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.UpDownAction;
 
 public class UpDownActionExtractor implements ActionExtractor<UpDownAction> {

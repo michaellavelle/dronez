@@ -17,7 +17,7 @@ package org.machinelearning4j.dronez.policy;
 
 import java.util.List;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
+import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.ForwardBackAction;
 import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.dronez.NumericAction;

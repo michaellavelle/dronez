@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.machinelearning4j.dronez.commands.PolicyCommand;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.mdp.PolicyExecutor;
 import org.ml4j.mdp.StateActionController;
 import org.ml4j.mdp.StateActionSequenceListener;

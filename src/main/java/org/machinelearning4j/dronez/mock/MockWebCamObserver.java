@@ -6,9 +6,9 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.Date;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneState;
 import org.machinelearning4j.dronez.tracking.AbstractWebCamObserver;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.imaging.SerializableBufferedImageAdapter;
 import org.ml4j.imaging.targets.ImageDisplay;
 import org.ml4j.imaging.tracking.Position3D;

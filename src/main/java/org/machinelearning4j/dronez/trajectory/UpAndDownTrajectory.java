@@ -15,7 +15,7 @@
  */
 package org.machinelearning4j.dronez.trajectory;
 
-import org.machinelearning4j.dronez.domain.DroneState;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.mdp.Trajectory;
 

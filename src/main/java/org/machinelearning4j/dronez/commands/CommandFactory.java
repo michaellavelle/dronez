@@ -1,7 +1,7 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneState;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.mdp.StateActionSequenceListener;
 import org.ml4j.mdp.Trajectory;
 

@@ -1,7 +1,7 @@
 package org.machinelearning4j.dronez.mock;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneState;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.ForwardBackAction;
 import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.dronez.PositionVelocity;
@@ -14,13 +14,6 @@ public class MockDroneModel implements Model<DroneState, DroneState, DroneAction
 	private Model<PositionVelocity, PositionVelocity, LeftRightAction> leftRightModel;
 	private Model<PositionVelocity, PositionVelocity, UpDownAction> upDownModel;
 	private Model<PositionVelocity, PositionVelocity, ForwardBackAction> forwardBackModel;
-
-	/*
-	public MockDroneModel2()
-	{
-		this(new MockDroneDimensionModel<LeftRightAction>(-2.5,2.5,false),new MockDroneDimensionModel<UpDownAction>(-2.5,2.5,true),new MockDroneDimensionModel<ForwardBackAction>(0,4,false));
-	}
-	*/
 
 	public MockDroneModel(Model<PositionVelocity, PositionVelocity, LeftRightAction> leftRightModel,Model<PositionVelocity, PositionVelocity, UpDownAction> upDownModel,Model<PositionVelocity, PositionVelocity, ForwardBackAction> forwardBackModel)
 	{

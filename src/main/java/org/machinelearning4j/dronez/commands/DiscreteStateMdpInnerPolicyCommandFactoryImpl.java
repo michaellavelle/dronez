@@ -1,10 +1,10 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.DroneState;
 import org.machinelearning4j.dronez.policy.ForwardBackActionIndexMapper;
 import org.machinelearning4j.dronez.policy.LeftRightActionIndexMapper;
 import org.machinelearning4j.dronez.policy.RelativePositionVelocityIndexMapper;
 import org.machinelearning4j.dronez.policy.UpDownActionIndexMapper;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.ForwardBackAction;
 import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.dronez.NumericAction;

@@ -2,8 +2,8 @@ package org.machinelearning4j.dronez.tracking;
 
 import java.awt.Dimension;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneState;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.imaging.FrameSequenceSource;
 import org.ml4j.imaging.SerializableBufferedImageAdapter;
 import org.ml4j.imaging.labeling.LabeledDataFrameUpdateListenerAdapter;

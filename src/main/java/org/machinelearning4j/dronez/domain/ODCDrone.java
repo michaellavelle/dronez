@@ -1,5 +1,7 @@
 package org.machinelearning4j.dronez.domain;
 
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.mdp.StateObserver;
 import org.opendronecontrol.platforms.ardrone.ARDrone;
 

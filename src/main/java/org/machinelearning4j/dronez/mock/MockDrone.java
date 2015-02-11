@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.machinelearning4j.dronez.domain.Drone;
-import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneState;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.mdp.Model;
 
 public class MockDrone extends Drone 

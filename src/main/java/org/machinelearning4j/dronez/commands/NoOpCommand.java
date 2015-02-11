@@ -1,10 +1,10 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.DroneAction;
-import org.machinelearning4j.dronez.domain.DroneState;
 import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
 import org.machinelearning4j.dronez.policy.DistanceToTargetPositionsPolicyStateMapper;
 import org.machinelearning4j.dronez.policy.NoOpPolicy;
+import org.ml4j.dronez.DroneAction;
+import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.mdp.Policy;
 import org.ml4j.mdp.PolicyStateMapper;

@@ -8,17 +8,17 @@ import org.ml4j.mdp.IndexedStatePolicyAdapter;
 import org.ml4j.mdp.Policy;
 import org.ml4j.util.SerializationHelper;
 
-public class LearnedInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegionPolicyCommandFactory {
+public class LearnedDiscreteInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegionPolicyCommandFactory {
 
 	private static SerializationHelper serializationHelper;
 	
-	public static LearnedInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory)
+	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory)
 	{
 		serializationHelper = new SerializationHelper(savedPolicyDirectory);
-		return new LearnedInnerPolicyCommandFactoryImpl();
+		return new LearnedDiscreteInnerPolicyCommandFactoryImpl();
 	}
 	
-	private LearnedInnerPolicyCommandFactoryImpl()
+	private LearnedDiscreteInnerPolicyCommandFactoryImpl()
 	{
  	}
 	
