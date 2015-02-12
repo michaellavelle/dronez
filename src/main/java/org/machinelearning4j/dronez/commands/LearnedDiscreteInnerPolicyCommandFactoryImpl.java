@@ -18,6 +18,12 @@ public class LearnedDiscreteInnerPolicyCommandFactoryImpl extends AbstractInnerO
 		return new LearnedDiscreteInnerPolicyCommandFactoryImpl();
 	}
 	
+	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(ClassLoader classLoader,String savedPolicyDirectory)
+	{
+		serializationHelper = new SerializationHelper(classLoader,savedPolicyDirectory);
+		return new LearnedDiscreteInnerPolicyCommandFactoryImpl();
+	}
+	
 	private LearnedDiscreteInnerPolicyCommandFactoryImpl()
 	{
  	}
