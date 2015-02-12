@@ -40,7 +40,7 @@ public class DroneFlyerPolicyLearnerTestHarness extends AbstractDroneFlyer{
 
 		boolean useMocks = true;
 		
-		CommandFactory commandFactory = new DiscreteStateMdpInnerPolicyCommandFactoryImpl(null);
+		CommandFactory commandFactory = new DiscreteStateMdpInnerPolicyCommandFactoryImpl(DroneFlyerPolicyLearnerTestHarness.class.getClassLoader(),"serialized");
 		commandFactory.init();		
 		
 		if (useMocks)

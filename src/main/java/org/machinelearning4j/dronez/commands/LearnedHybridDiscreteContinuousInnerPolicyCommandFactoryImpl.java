@@ -19,6 +19,13 @@ public class LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl extend
 		return new LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl();
 	}
 	
+	
+	public static LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl create(ClassLoader classLoader,String savedPolicyDirectory)
+	{
+		serializationHelper = new SerializationHelper(classLoader,savedPolicyDirectory);
+		return new LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl();
+	}
+	
 	private LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl()
 	{
  	}
@@ -27,14 +34,16 @@ public class LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl extend
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
 	{
-		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "learnedNNLeftRightPolicy");	
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "learnedLRLeftRightPolicy");	
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
 	{
-		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "upDownPolicy");
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "learnedLRUpDownPolicy");	
+
+		//return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "upDownPolicy");
 	}
 	
 	@SuppressWarnings("unchecked")

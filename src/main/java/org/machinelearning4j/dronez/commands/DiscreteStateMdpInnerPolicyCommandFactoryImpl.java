@@ -38,6 +38,14 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 		}
 	}
 	
+	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(ClassLoader classLoader,String savedPolicyDirectory)
+	{
+		if (savedPolicyDirectory != null && classLoader != null)
+		{
+			serializationHelper = new SerializationHelper(classLoader,savedPolicyDirectory);
+		}
+	}
+	
 
 	private Probabilities4D probabilities4D;
 	
