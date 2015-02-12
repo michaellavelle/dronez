@@ -2,11 +2,9 @@ package org.machinelearning4j.dronez.mock;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-import org.ml4j.dronez.DeltaPositionVelocityModelAdapter;
+import org.ml4j.dronez.DeltaPositionVelocityLeftRightModelAdapter;
 import org.ml4j.dronez.LeftRightAction;
-import org.ml4j.dronez.NumericAction;
 import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.dronez.PositionVelocityWithRecentActions;
 import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
@@ -19,7 +17,7 @@ public class LearnedMockDroneLeftRightModel implements Model<PositionVelocity,Po
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private DeltaPositionVelocityModelAdapter deltaModel;
+	private DeltaPositionVelocityLeftRightModelAdapter deltaModel;
 	
 	
 	private List<LeftRightAction> actions = new ArrayList<LeftRightAction>();
@@ -34,7 +32,7 @@ public class LearnedMockDroneLeftRightModel implements Model<PositionVelocity,Po
 	private double minValue;
 	private double maxValue;
 	
-	public LearnedMockDroneLeftRightModel(double minValue,double maxValue,DeltaPositionVelocityModelAdapter deltaModel)
+	public LearnedMockDroneLeftRightModel(double minValue,double maxValue,DeltaPositionVelocityLeftRightModelAdapter deltaModel)
 	{
 		this.minValue = minValue;
 		this.maxValue = maxValue;
