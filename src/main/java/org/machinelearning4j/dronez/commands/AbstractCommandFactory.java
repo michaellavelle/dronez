@@ -1,8 +1,8 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
 import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.DroneState;
+import org.ml4j.dronez.TargetRelativeDroneStateWithRecentActions;
 import org.ml4j.mdp.Policy;
 import org.ml4j.mdp.StateActionSequenceHistory;
 import org.ml4j.mdp.Trajectory;

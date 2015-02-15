@@ -1,6 +1,5 @@
 package org.machinelearning4j.dronez.policy;
 
-import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
 import org.machinelearning4j.dronez.trajectory.ForwardBackTrajectory;
 import org.machinelearning4j.dronez.trajectory.LeftRightTrajectory;
 import org.machinelearning4j.dronez.trajectory.SpinTrajectory;
@@ -8,11 +7,15 @@ import org.machinelearning4j.dronez.trajectory.UpDownTrajectory;
 import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.ForwardBackActionExtractor;
 import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.LeftRightActionExtractor;
 import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.dronez.SpinAction;
+import org.ml4j.dronez.TargetRelativeDroneStateWithRecentActions;
 import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.dronez.UpDownAction;
+import org.ml4j.dronez.UpDownActionExtractor;
 import org.ml4j.mdp.PolicyStateMapper;
 import org.ml4j.mdp.StateActionSequenceHistory;
 import org.ml4j.mdp.Trajectory;

@@ -1,16 +1,16 @@
 package org.machinelearning4j.dronez.commands;
 
-import org.machinelearning4j.dronez.policy.ForwardBackActionIndexMapper;
-import org.machinelearning4j.dronez.policy.LeftRightActionIndexMapper;
 import org.machinelearning4j.dronez.policy.RelativePositionVelocityIndexMapper;
-import org.machinelearning4j.dronez.policy.UpDownActionIndexMapper;
 import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.ForwardBackActionIndexMapper;
 import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.LeftRightActionIndexMapper;
 import org.ml4j.dronez.NumericAction;
 import org.ml4j.dronez.TargetRelativePositionWithVelocity;
 import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.dronez.UpDownAction;
+import org.ml4j.dronez.UpDownActionIndexMapper;
 import org.ml4j.mdp.DiscreteIndexedStateMarkovDecisionProcessAdapter;
 import org.ml4j.mdp.DiscreteStateMarkovDecisionProcess;
 import org.ml4j.mdp.IndexMapper;

@@ -2,6 +2,7 @@ package org.machinelearning4j.dronez;
 
 import org.machinelearning4j.dronez.commands.CommandFactory;
 import org.machinelearning4j.dronez.commands.HoverCommand;
+import org.machinelearning4j.dronez.commands.LearnedDiscreteInnerPolicyCommandFactoryImpl;
 import org.machinelearning4j.dronez.commands.NoOpCommand;
 import org.machinelearning4j.dronez.commands.NoOpCommandFactoryImpl;
 import org.machinelearning4j.dronez.commands.TargetTrajectoryCommand;
@@ -39,7 +40,7 @@ public class DroneFlyerTestHarness extends AbstractDroneFlyer{
 
 		boolean useMocks = true;
 		
-		CommandFactory commandFactory = new NoOpCommandFactoryImpl();
+		CommandFactory commandFactory = LearnedDiscreteInnerPolicyCommandFactoryImpl.create("/Users/michael/model/ml4j-mdp-model-learning/target/classes/serialized");
 		commandFactory.init();
 		
 		if (useMocks)

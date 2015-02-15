@@ -2,18 +2,18 @@ package org.machinelearning4j.dronez.commands;
 
 import java.io.Serializable;
 
-import org.machinelearning4j.dronez.domain.TargetRelativeDroneStateWithRecentActions;
-import org.machinelearning4j.dronez.policy.ForwardBackActionIndexMapper;
-import org.machinelearning4j.dronez.policy.LeftRightActionIndexMapper;
 import org.machinelearning4j.dronez.policy.RelativePositionVelocityIndexMapper;
 import org.machinelearning4j.dronez.policy.SpinActionIndexMapper;
-import org.machinelearning4j.dronez.policy.UpDownActionIndexMapper;
 import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.ForwardBackAction;
+import org.ml4j.dronez.ForwardBackActionIndexMapper;
 import org.ml4j.dronez.LeftRightAction;
+import org.ml4j.dronez.LeftRightActionIndexMapper;
 import org.ml4j.dronez.SpinAction;
+import org.ml4j.dronez.TargetRelativeDroneStateWithRecentActions;
 import org.ml4j.dronez.TargetRelativePositionWithVelocity;
 import org.ml4j.dronez.UpDownAction;
+import org.ml4j.dronez.UpDownActionIndexMapper;
 import org.ml4j.mdp.IndexedProbabilitiesBuilder;
 import org.ml4j.mdp.StateActionSequenceListener;
 
