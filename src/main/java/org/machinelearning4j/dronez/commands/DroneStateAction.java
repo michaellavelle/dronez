@@ -21,11 +21,11 @@ package org.machinelearning4j.dronez.commands;
  * @author Michael Lavelle
  *
  */
-public class DroneStateAction<S,A> {
+public class DroneStateAction<S, A> {
 
 	private S state;
 	private A action;
-	
+
 	public DroneStateAction(S velAccel, A action) {
 		this.state = velAccel;
 		this.action = action;
@@ -38,7 +38,5 @@ public class DroneStateAction<S,A> {
 	public A getAction() {
 		return action;
 	}
-	
-	
 
 }

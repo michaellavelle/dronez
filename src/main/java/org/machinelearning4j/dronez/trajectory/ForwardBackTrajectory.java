@@ -6,12 +6,11 @@ import org.ml4j.mdp.Trajectory;
 public class ForwardBackTrajectory implements Trajectory<Double> {
 
 	private Trajectory<DroneState> droneStateTrajectory;
-	
-	public ForwardBackTrajectory(Trajectory<DroneState> droneStateTrajectory)
-	{
+
+	public ForwardBackTrajectory(Trajectory<DroneState> droneStateTrajectory) {
 		this.droneStateTrajectory = droneStateTrajectory;
 	}
-	
+
 	@Override
 	public Double getTarget(long iteration) {
 		DroneState targetState = droneStateTrajectory.getTarget(iteration);

@@ -18,65 +18,58 @@ import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Model;
 import org.ml4j.mdp.StateObserver;
 
-
 public abstract class AbstractDroneFlyer {
-	
+
 	protected abstract void executeMainFlight(Drone drone);
-	
+
 	private Drone drone;
 	private StateObserver<DroneState> droneObserver;
 	private DronePositionPrinter dronePositionPrinter;
-	
+
 	protected CommandFactory commandFactory;
-	
-	static
-	{
+
+	static {
 		// Set AR Drone Logging to not log WARNING messages
-		for (Handler handler : Logger.getLogger("").getHandlers())
-		{
+		for (Handler handler : Logger.getLogger("").getHandlers()) {
 			handler.setLevel(Level.SEVERE);
 		}
 	}
-	
-	protected static Model<DroneState,DroneState,DroneAction> createMockDroneModel()
-	{
-		Model<PositionVelocity, PositionVelocity, LeftRightAction> mockLeftRightModel 
-		 = new MockDroneDimensionModel<LeftRightAction>(-2.5,2.5,false);
-		
-		Model<PositionVelocity, PositionVelocity, UpDownAction> mockUpDownModel 
-		 = new MockDroneDimensionModel<UpDownAction>(-2.5,2.5,true);
-		
-		Model<PositionVelocity, PositionVelocity, ForwardBackAction> mockForwardBackModel 
-		 = new MockDroneDimensionModel<ForwardBackAction>(0,4,false);
-		
-		return new MockDroneModel(mockLeftRightModel,mockUpDownModel,mockForwardBackModel);
+
+	protected static Model<DroneState, DroneState, DroneAction> createMockDroneModel() {
+		Model<PositionVelocity, PositionVelocity, LeftRightAction> mockLeftRightModel = new MockDroneDimensionModel<LeftRightAction>(
+				-2.5, 2.5, false);
+
+		Model<PositionVelocity, PositionVelocity, UpDownAction> mockUpDownModel = new MockDroneDimensionModel<UpDownAction>(
+				-2.5, 2.5, true);
+
+		Model<PositionVelocity, PositionVelocity, ForwardBackAction> mockForwardBackModel = new MockDroneDimensionModel<ForwardBackAction>(
+				0, 4, false);
+
+		return new MockDroneModel(mockLeftRightModel, mockUpDownModel, mockForwardBackModel);
 	}
-	
-	
+
 	public DronePositionPrinter getDronePositionPrinter() {
 		return dronePositionPrinter;
 	}
 
-	public AbstractDroneFlyer(Drone drone,StateObserver<DroneState> droneObserver,CommandFactory commandFactory)
-	{
+	public AbstractDroneFlyer(Drone drone, StateObserver<DroneState> droneObserver, CommandFactory commandFactory) {
 		this.drone = drone;
 		this.droneObserver = droneObserver;
-		this.dronePositionPrinter = new DronePositionPrinter( -2.5, 2.5, false, 0.05, "Flying:");
+		this.dronePositionPrinter = new DronePositionPrinter(-2.5, 2.5, false, 0.05, "Flying:");
 		this.commandFactory = commandFactory;
 	}
 
 	public void flyDrone() {
-		
+
 		// Log state action sequence events
 		drone.addStateActionSequenceListener(dronePositionPrinter);
 
 		// Launch drone
 		drone.executeLaunchSequence();
-				
+
 		DroneState droneState = droneObserver.getCurrentState();
-		
-		while (droneState == null || droneState.getLeftRightPositionVelocity() == null )
-		{
+
+		while (droneState == null || droneState.getLeftRightPositionVelocity() == null) {
 			try {
 				Thread.sleep(1000);
 				System.out.println("Looking for drone");
@@ -85,12 +78,11 @@ public abstract class AbstractDroneFlyer {
 			droneState = droneObserver.getCurrentState();
 		}
 		System.out.println("Drone aquired");
-		
+
 		executeMainFlight(drone);
 
 		// Land
 		drone.executeLandingSequence();
 	}
-
 
 }

@@ -11,23 +11,26 @@ import org.ml4j.mdp.PolicyStateMapper;
 import org.ml4j.mdp.StateActionSequenceHistory;
 import org.ml4j.mdp.Trajectory;
 
-public class NoOpCommand extends AbstractPolicyCommand<DroneState, TargetRelativeDroneStateWithRecentActions, DroneAction> {
+public class NoOpCommand extends
+		AbstractPolicyCommand<DroneState, TargetRelativeDroneStateWithRecentActions, DroneAction> {
 
-	private StateActionSequenceHistory<?,?,DroneAction> history;
+	private StateActionSequenceHistory<?, ?, DroneAction> history;
 	private Trajectory<DroneState> trajectory;
-	
-	public NoOpCommand( int iterations,StateActionSequenceHistory<?,?,DroneAction> history)
-	{
+
+	public NoOpCommand(int iterations, StateActionSequenceHistory<?, ?, DroneAction> history) {
 		super(iterations);
 		this.trajectory = new Trajectory<DroneState>() {
 
 			@Override
 			public DroneState getTarget(long arg0) {
-				return new DroneState(new PositionVelocity(0,0),new PositionVelocity(0,0),new PositionVelocity(0,0),new PositionVelocity(0,0));
-			}};
-;		this.history = history;
+				return new DroneState(new PositionVelocity(0, 0), new PositionVelocity(0, 0),
+						new PositionVelocity(0, 0), new PositionVelocity(0, 0));
+			}
+		};
+		;
+		this.history = history;
 	}
-	
+
 	@Override
 	public Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> getPolicy() {
 		return new NoOpPolicy();
@@ -35,8 +38,7 @@ public class NoOpCommand extends AbstractPolicyCommand<DroneState, TargetRelativ
 
 	@Override
 	public PolicyStateMapper<DroneState, TargetRelativeDroneStateWithRecentActions> getPolicyStateMapper() {
-		return new DistanceToTargetPositionsPolicyStateMapper(trajectory,history);
+		return new DistanceToTargetPositionsPolicyStateMapper(trajectory, history);
 	}
-
 
 }

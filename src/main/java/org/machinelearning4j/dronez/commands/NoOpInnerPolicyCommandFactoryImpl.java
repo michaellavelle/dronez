@@ -11,19 +11,15 @@ import org.ml4j.mdp.Policy;
 
 public class NoOpInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegionPolicyCommandFactory {
 
-	
-	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
-	{
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
 		return new NoOpLeftRightPolicy();
 	}
-	
-	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
-	{
+
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetInnerPolicy() {
 		return new NoOpUpDownPolicy();
 	}
-	
-	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy()
-	{
+
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy() {
 		return new NoOpForwardBackPolicy();
 	}
 

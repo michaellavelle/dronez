@@ -31,5 +31,4 @@ public class NoOpCommandFactoryImpl extends AbstractIndependentDimensionsCommand
 		return new NoOpForwardBackPolicy();
 	}
 
-	
 }

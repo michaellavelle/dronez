@@ -19,8 +19,8 @@ import org.ml4j.dronez.TargetRelativePositionWithVelocity;
 import org.ml4j.mdp.RewardFunction;
 
 /**
- * Models a RewardFunction for the objective to minimise target-relative position in a PositionVelocity
- * observation model
+ * Models a RewardFunction for the objective to minimise target-relative
+ * position in a PositionVelocity observation model
  * 
  * @author Michael Lavelle
  *
@@ -34,20 +34,22 @@ public class MinimiseTargetRelativePositionRewardFunction implements RewardFunct
 
 	@Override
 	public double getReward(TargetRelativePositionWithVelocity state) {
-	
-		//if (Math.abs(state.getPosition()) < 0.25d) return 2000d + 200d/(1d + Math.pow(1 + Math.abs(state.getPosition()),2d)) +1000d/(1d + Math.pow(1 + Math.abs(state.getVelocity()),2d)) ;
-		//if (Math.abs(state.getPosition()) >= 0.25d) return -100d * Math.pow(1 + Math.abs(state.getPosition()),2d) ;
-		//return 100d/(1d + Math.pow(1 + Math.abs(state.getPosition()),2d)) + 50d/ (1 + Math.pow(1 + Math.abs(state.getVelocity()),2d));
-	 double reward =  100d/(1d + Math.pow(1 + Math.abs(state.getPosition()),2d));
-	 if (Math.abs(state.getPosition()) < 0.5)
-	 {
-		 reward = reward * 100 + (100d/Math.pow(1 + Math.abs(state.getVelocity()),2d));
-	 }
-	 if (Math.abs(state.getPosition()) < 0.25)
-	 {
-		 reward = reward *2 ;
-	 }
-	 return reward;
+
+		// if (Math.abs(state.getPosition()) < 0.25d) return 2000d + 200d/(1d +
+		// Math.pow(1 + Math.abs(state.getPosition()),2d)) +1000d/(1d +
+		// Math.pow(1 + Math.abs(state.getVelocity()),2d)) ;
+		// if (Math.abs(state.getPosition()) >= 0.25d) return -100d * Math.pow(1
+		// + Math.abs(state.getPosition()),2d) ;
+		// return 100d/(1d + Math.pow(1 + Math.abs(state.getPosition()),2d)) +
+		// 50d/ (1 + Math.pow(1 + Math.abs(state.getVelocity()),2d));
+		double reward = 100d / (1d + Math.pow(1 + Math.abs(state.getPosition()), 2d));
+		if (Math.abs(state.getPosition()) < 0.5) {
+			reward = reward * 100 + (100d / Math.pow(1 + Math.abs(state.getVelocity()), 2d));
+		}
+		if (Math.abs(state.getPosition()) < 0.25) {
+			reward = reward * 2;
+		}
+		return reward;
 	}
 
 }

@@ -19,27 +19,22 @@ public class DronePositionDetectionPointLabelAssigner implements
 
 	private int halfDroneDistanceXY;
 
-	public DronePositionDetectionPointLabelAssigner(int frameWidth,
-			int frameHeight, boolean stickyCog) {
+	public DronePositionDetectionPointLabelAssigner(int frameWidth, int frameHeight, boolean stickyCog) {
 		this.sticky = stickyCog;
 	}
 
-	public Position3D getPointInSpace(Point point,
-			double halfDistanceBetweenLeds) {
+	public Position3D getPointInSpace(Point point, double halfDistanceBetweenLeds) {
 		if (point == null)
 			return null;
 		if (halfDistanceBetweenLeds == 0)
 			throw new RuntimeException("no leds");
-		PixelToPositionEstimator estimator = new PixelToPositionEstimator(
-				halfDistanceBetweenLeds);
-		return new Position3D(estimator.getX(point.getX()),
-				estimator.getY(point.getY()),
+		PixelToPositionEstimator estimator = new PixelToPositionEstimator(halfDistanceBetweenLeds);
+		return new Position3D(estimator.getX(point.getX()), estimator.getY(point.getY()),
 				estimator.getZ(halfDistanceBetweenLeds), point);
 	}
 
 	@Override
-	public LabeledData<SerializableBufferedImageAdapter, Position3D> assignLabel(
-			SerializableBufferedImageAdapter data) {
+	public LabeledData<SerializableBufferedImageAdapter, Position3D> assignLabel(SerializableBufferedImageAdapter data) {
 
 		Point newPos = null;
 		Point left = null;
@@ -69,39 +64,31 @@ public class DronePositionDetectionPointLabelAssigner implements
 
 		if (left != null && right == null) {
 			if (position != null) {
-				newPos = new Point((int) (left.getX() + halfDroneDistanceXY),
-						(int) left.getY());
+				newPos = new Point((int) (left.getX() + halfDroneDistanceXY), (int) left.getY());
 			}
 		}
 		if (left == null && right != null) {
 			if (position != null) {
-				newPos = new Point((int) (right.getX() - halfDroneDistanceXY),
-						(int) right.getY());
+				newPos = new Point((int) (right.getX() - halfDroneDistanceXY), (int) right.getY());
 			}
 		}
 		if (left != null && right != null) {
 			halfDroneDistanceXY = (int) (right.getX() - left.getX()) / 2;
-			newPos = new Point((int) (right.getX() + left.getX()) / 2,
-					(int) (right.getY() + left.getY()) / 2);
+			newPos = new Point((int) (right.getX() + left.getX()) / 2, (int) (right.getY() + left.getY()) / 2);
 
 		}
 		if (newPos != null) {
 			position = newPos;
-			Position3D pointInSpace = getPointInSpace(newPos,
-					halfDroneDistanceXY);
-			return new LabeledData<SerializableBufferedImageAdapter, Position3D>(
-					data, pointInSpace);
+			Position3D pointInSpace = getPointInSpace(newPos, halfDroneDistanceXY);
+			return new LabeledData<SerializableBufferedImageAdapter, Position3D>(data, pointInSpace);
 		} else {
 			if (sticky) {
-				Position3D pointInSpace = getPointInSpace(position,
-						halfDroneDistanceXY);
+				Position3D pointInSpace = getPointInSpace(position, halfDroneDistanceXY);
 
-				return new LabeledData<SerializableBufferedImageAdapter, Position3D>(
-						data, pointInSpace);
+				return new LabeledData<SerializableBufferedImageAdapter, Position3D>(data, pointInSpace);
 			} else {
 
-				return new LabeledData<SerializableBufferedImageAdapter, Position3D>(
-						data, null);
+				return new LabeledData<SerializableBufferedImageAdapter, Position3D>(data, null);
 
 			}
 		}

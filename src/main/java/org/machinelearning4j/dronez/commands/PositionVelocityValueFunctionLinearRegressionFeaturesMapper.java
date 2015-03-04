@@ -19,38 +19,39 @@ import org.ml4j.algorithms.FeaturesMapper;
 import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.dronez.PositionVelocityWithRecentActions;
 
-
 /**
-* <p>Extracts numeric feature vectors from PositionVelocity instances that we would like
-* to be able to build a linear approximation regression model for the value function from.
-* 
-* Assume here that value is inversely linked to position and velocity magnitude, and so we choose
-* a suitable mapping of the velocity feature as our training data, along with an intercept term
-* </p>
-*
-* @author Michael Lavelle
-*/
-public class PositionVelocityValueFunctionLinearRegressionFeaturesMapper implements FeaturesMapper<PositionVelocityWithRecentActions<LeftRightAction>> {
+ * <p>
+ * Extracts numeric feature vectors from PositionVelocity instances that we
+ * would like to be able to build a linear approximation regression model for
+ * the value function from.
+ * 
+ * Assume here that value is inversely linked to position and velocity
+ * magnitude, and so we choose a suitable mapping of the velocity feature as our
+ * training data, along with an intercept term
+ * </p>
+ *
+ * @author Michael Lavelle
+ */
+public class PositionVelocityValueFunctionLinearRegressionFeaturesMapper implements
+		FeaturesMapper<PositionVelocityWithRecentActions<LeftRightAction>> {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private boolean includeRecentActions = false;
 
 	@Override
 	public double[] toFeaturesVector(PositionVelocityWithRecentActions<LeftRightAction> data) {
-		
+
 		double features[] = new double[getFeatureCount()];
 		features[0] = 1d;
-		features[1] = Math.pow(data.getPosition(),2d);
-		features[2] = Math.pow(data.getVelocity(),2d);
-		if (includeRecentActions)
-		{
-			for (int i = 0; i < PositionVelocityWithRecentActions.RECENT_ACTION_COUNT; i++)
-			{
-				features[3 + i] = data.getRecentActions()[i].ordinal() - 1;
+		features[1] = Math.pow(data.getPosition(), 2d);
+		features[2] = Math.pow(data.getVelocity(), 2d);
+		if (includeRecentActions) {
+			for (int i = 0; i < PositionVelocityWithRecentActions.RECENT_ACTION_COUNT; i++) {
+				features[3 + i] = data.getRecentActions().get(i).ordinal() - 1;
 			}
 		}
 		return features;

@@ -18,7 +18,8 @@ package org.machinelearning4j.dronez.commands;
 import org.ml4j.mdp.Trajectory;
 
 /**
- * A sine-wave trajectory, specifying a target position/velocity for a given iteration
+ * A sine-wave trajectory, specifying a target position/velocity for a given
+ * iteration
  * 
  * @author Michael Lavelle
  * 
@@ -27,7 +28,7 @@ public class SineWaveTrajectory implements Trajectory<Double> {
 
 	@Override
 	public Double getTarget(long iteration) {
-		return  50 * Math.sin(2 * Math.PI * iteration /500);		
+		return 50 * Math.sin(2 * Math.PI * iteration / 500);
 	}
 
 }

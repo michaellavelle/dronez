@@ -21,16 +21,20 @@ import org.ml4j.dronez.PositionVelocityWithRecentActions;
 import org.ml4j.mdp.StateAction;
 
 /**
-* <p>Extracts numeric feature vectors from DroneStateAction<PositionVelocity,LeftRightAction> instances that we would like
-* to be able to build a linear approximation regression model from for our Drone simulation model
-* 
-* Assume here that value can be approximated by a linear regression of numeric mappings
-* of starting state, action taken and ending state.
-* </p>
-*
-* @author Michael Lavelle
-*/
-public class DroneStateActionNeuralNetworkFeaturesMapper implements FeaturesMapper<StateAction<VelocityAndRecentActions,LeftRightAction>> {
+ * <p>
+ * Extracts numeric feature vectors from
+ * DroneStateAction<PositionVelocity,LeftRightAction> instances that we would
+ * like to be able to build a linear approximation regression model from for our
+ * Drone simulation model
+ * 
+ * Assume here that value can be approximated by a linear regression of numeric
+ * mappings of starting state, action taken and ending state.
+ * </p>
+ *
+ * @author Michael Lavelle
+ */
+public class DroneStateActionNeuralNetworkFeaturesMapper implements
+		FeaturesMapper<StateAction<VelocityAndRecentActions, LeftRightAction>> {
 
 	/**
 	 * 
@@ -38,19 +42,17 @@ public class DroneStateActionNeuralNetworkFeaturesMapper implements FeaturesMapp
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public double[] toFeaturesVector(StateAction<VelocityAndRecentActions,LeftRightAction> data) {
-		int actionIndex = data.getAction().ordinal() -1;
+	public double[] toFeaturesVector(StateAction<VelocityAndRecentActions, LeftRightAction> data) {
+		int actionIndex = data.getAction().ordinal() - 1;
 		double[] features = new double[getFeatureCount()];
 		features[0] = data.getState().getVelocity();
-		for (int i = 0; i < PositionVelocityWithRecentActions.RECENT_ACTION_COUNT; i++)
-		{
-			features[i+1] = data.getState().getRecentActions()[i].ordinal() - 1;
+		for (int i = 0; i < PositionVelocityWithRecentActions.RECENT_ACTION_COUNT; i++) {
+			features[i + 1] = data.getState().getRecentActions().get(i).ordinal() - 1;
 		}
 		features[features.length - 1] = actionIndex;
 		return features;
-		
-		
-		//return new double[] {data.getState().getVelocity(),actionIndex};
+
+		// return new double[] {data.getState().getVelocity(),actionIndex};
 
 	}
 

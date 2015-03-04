@@ -32,32 +32,36 @@ import org.ml4j.mdp.StateActionSequenceHistory;
 import org.ml4j.mdp.Trajectory;
 
 /**
- * Maps an absolute position to a position relative to an iteration-dependent target specified
- * by a given position Trajectory.  Does not modify velocity state.
+ * Maps an absolute position to a position relative to an iteration-dependent
+ * target specified by a given position Trajectory. Does not modify velocity
+ * state.
  * 
  * @author Michael Lavelle
  *
  */
-public class DistanceToTargetPositionPolicyStateMapper<A extends NumericAction> implements PolicyStateMapper<PositionVelocity,TargetRelativePositionWithVelocityAndRecentActions<A>> {
+public class DistanceToTargetPositionPolicyStateMapper<A extends NumericAction> implements
+		PolicyStateMapper<PositionVelocity, TargetRelativePositionWithVelocityAndRecentActions<A>> {
 
 	private Trajectory<Double> targetPositionTrajectory;
-	private StateActionSequenceHistory<?,?,DroneAction> history;
+	private StateActionSequenceHistory<?, ?, DroneAction> history;
 	private ActionExtractor<A> actionExtractor;
-	
-	public DistanceToTargetPositionPolicyStateMapper(Trajectory<Double> targetPositionTrajectory,StateActionSequenceHistory<?,?,DroneAction> history,ActionExtractor<A> actionExtractor)
-	{
+
+	public DistanceToTargetPositionPolicyStateMapper(Trajectory<Double> targetPositionTrajectory,
+			StateActionSequenceHistory<?, ?, DroneAction> history, ActionExtractor<A> actionExtractor) {
 		this.targetPositionTrajectory = targetPositionTrajectory;
 		this.history = history;
 		this.actionExtractor = actionExtractor;
 	}
-	
+
 	@Override
-	public TargetRelativePositionWithVelocityAndRecentActions<A> getPolicyState(PositionVelocity state,long iteration) {
+	public TargetRelativePositionWithVelocityAndRecentActions<A> getPolicyState(PositionVelocity state, long iteration) {
 		double distanceToTargetPosition = targetPositionTrajectory.getTarget(iteration) - state.getPosition();
-		
-		List<DroneAction> actions = history.getRecentActions(PositionVelocityWithRecentActions.RECENT_ACTION_COUNT,new DroneAction(LeftRightAction.NO_OP,UpDownAction.NO_OP,ForwardBackAction.NO_OP,SpinAction.NO_OP));
-		
-		return new TargetRelativePositionWithVelocityAndRecentActions<A>(distanceToTargetPosition,state.getVelocity(),actionExtractor.getActions(actions));
+
+		List<DroneAction> actions = history.getRecentActions(PositionVelocityWithRecentActions.RECENT_ACTION_COUNT,
+				new DroneAction(LeftRightAction.NO_OP, UpDownAction.NO_OP, ForwardBackAction.NO_OP, SpinAction.NO_OP));
+
+		return new TargetRelativePositionWithVelocityAndRecentActions<A>(distanceToTargetPosition, state.getVelocity(),
+				actionExtractor.getActions(actions));
 	}
 
 }

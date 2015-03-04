@@ -11,25 +11,22 @@ import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.dronez.UpDownAction;
 import org.ml4j.mdp.Policy;
 
-public abstract class AbstractIndependentDimensionsCommandFactory extends
-		AbstractCommandFactory {
+public abstract class AbstractIndependentDimensionsCommandFactory extends AbstractCommandFactory {
 
-	
 	protected Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> createDistanceToTargetPolicy() {
 		return new IndependentDimensionsTargetTrajectoryPolicy(createLeftRightDistanceToTargetPolicy(),
-				createUpDownDistanceToTargetPolicy(),createForwardBackDistanceToTargetPolicy(),createSpinDistanceToTargetPolicy());
+				createUpDownDistanceToTargetPolicy(), createForwardBackDistanceToTargetPolicy(),
+				createSpinDistanceToTargetPolicy());
 	}
-		
-	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetPolicy();
 
-	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<SpinAction>,SpinAction> createSpinDistanceToTargetPolicy()
-	{
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetPolicy();
+
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<SpinAction>, SpinAction> createSpinDistanceToTargetPolicy() {
 		return new NoOpSpinPolicy();
 	}
-	
-	
-	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetPolicy();
-		
-	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetPolicy();
+
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetPolicy();
+
+	protected abstract Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetPolicy();
 
 }

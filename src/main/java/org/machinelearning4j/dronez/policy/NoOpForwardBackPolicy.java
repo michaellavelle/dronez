@@ -4,7 +4,8 @@ import org.ml4j.dronez.ForwardBackAction;
 import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.mdp.Policy;
 
-public class NoOpForwardBackPolicy implements Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> {
+public class NoOpForwardBackPolicy implements
+		Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> {
 
 	/**
 	 * 

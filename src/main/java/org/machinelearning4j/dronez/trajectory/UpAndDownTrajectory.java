@@ -20,7 +20,8 @@ import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.mdp.Trajectory;
 
 /**
- * A sine-wave trajectory, specifying a target position/velocity for a given iteration
+ * A sine-wave trajectory, specifying a target position/velocity for a given
+ * iteration
  * 
  * @author Michael Lavelle
  * 
@@ -28,20 +29,21 @@ import org.ml4j.mdp.Trajectory;
 public class UpAndDownTrajectory implements Trajectory<DroneState> {
 
 	private DroneState initialState;
-	
-	public UpAndDownTrajectory(DroneState initialState)
-	{
+
+	public UpAndDownTrajectory(DroneState initialState) {
 		this.initialState = initialState;
 	}
-	
-	
+
 	@Override
 	public DroneState getTarget(long iteration) {
-		PositionVelocity leftRightTarget =  new PositionVelocity( initialState.getLeftRightPositionVelocity().getPosition(),0);		
-		PositionVelocity upDownTarget =  new PositionVelocity( initialState.getUpDownPositionVelocity().getPosition() + 60 - 60 * Math.cos(2 * Math.PI * iteration /60),0);		
-		PositionVelocity forwardBackTarget =  new PositionVelocity( initialState.getForwardBackPositionVelocity().getPosition(),0);		
-		PositionVelocity spinTarget =  new PositionVelocity( initialState.getSpinPositionVelocity().getPosition(),0);		
-		return new DroneState(leftRightTarget,upDownTarget,forwardBackTarget,spinTarget);
+		PositionVelocity leftRightTarget = new PositionVelocity(initialState.getLeftRightPositionVelocity()
+				.getPosition(), 0);
+		PositionVelocity upDownTarget = new PositionVelocity(initialState.getUpDownPositionVelocity().getPosition()
+				+ 60 - 60 * Math.cos(2 * Math.PI * iteration / 60), 0);
+		PositionVelocity forwardBackTarget = new PositionVelocity(initialState.getForwardBackPositionVelocity()
+				.getPosition(), 0);
+		PositionVelocity spinTarget = new PositionVelocity(initialState.getSpinPositionVelocity().getPosition(), 0);
+		return new DroneState(leftRightTarget, upDownTarget, forwardBackTarget, spinTarget);
 	}
 
 }

@@ -20,16 +20,20 @@ import org.ml4j.dronez.NumericAction;
 import org.ml4j.dronez.PositionVelocityWithRecentActions;
 
 /**
-* <p>Extracts numeric feature vectors from DroneStateAction<PositionVelocity,LeftRightAction> instances that we would like
-* to be able to build a linear approximation regression model from for our Drone simulation model
-* 
-* Assume here that value can be approximated by a linear regression of numeric mappings
-* of starting state, action taken and ending state.
-* </p>
-*
-* @author Michael Lavelle
-*/
-public class DroneStateActionLinearRegressionFeaturesMapper implements FeaturesMapper<DroneStateAction<PositionVelocityWithRecentActions<?>,NumericAction>> {
+ * <p>
+ * Extracts numeric feature vectors from
+ * DroneStateAction<PositionVelocity,LeftRightAction> instances that we would
+ * like to be able to build a linear approximation regression model from for our
+ * Drone simulation model
+ * 
+ * Assume here that value can be approximated by a linear regression of numeric
+ * mappings of starting state, action taken and ending state.
+ * </p>
+ *
+ * @author Michael Lavelle
+ */
+public class DroneStateActionLinearRegressionFeaturesMapper implements
+		FeaturesMapper<DroneStateAction<PositionVelocityWithRecentActions<?>, NumericAction>> {
 
 	/**
 	 * 
@@ -37,8 +41,9 @@ public class DroneStateActionLinearRegressionFeaturesMapper implements FeaturesM
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public double[] toFeaturesVector(DroneStateAction<PositionVelocityWithRecentActions<?>,NumericAction> data) {
-		return new double[] {1d,data.getState().getPosition(),data.getState().getVelocity(),data.getAction().getValue()};
+	public double[] toFeaturesVector(DroneStateAction<PositionVelocityWithRecentActions<?>, NumericAction> data) {
+		return new double[] { 1d, data.getState().getPosition(), data.getState().getVelocity(),
+				data.getAction().getValue() };
 	}
 
 	@Override

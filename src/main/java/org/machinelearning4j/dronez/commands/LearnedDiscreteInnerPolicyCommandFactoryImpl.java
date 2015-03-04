@@ -11,41 +11,36 @@ import org.ml4j.util.SerializationHelper;
 public class LearnedDiscreteInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegionPolicyCommandFactory {
 
 	private static SerializationHelper serializationHelper;
-	
-	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory)
-	{
+
+	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory) {
 		serializationHelper = new SerializationHelper(savedPolicyDirectory);
 		return new LearnedDiscreteInnerPolicyCommandFactoryImpl();
 	}
-	
-	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(ClassLoader classLoader,String savedPolicyDirectory)
-	{
-		serializationHelper = new SerializationHelper(classLoader,savedPolicyDirectory);
+
+	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(ClassLoader classLoader,
+			String savedPolicyDirectory) {
+		serializationHelper = new SerializationHelper(classLoader, savedPolicyDirectory);
 		return new LearnedDiscreteInnerPolicyCommandFactoryImpl();
 	}
-	
-	private LearnedDiscreteInnerPolicyCommandFactoryImpl()
-	{
- 	}
-	
+
+	private LearnedDiscreteInnerPolicyCommandFactoryImpl() {
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>,LeftRightAction> createLeftRightDistanceToTargetInnerPolicy()
-	{
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
 		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "leftRightPolicy");
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>,UpDownAction> createUpDownDistanceToTargetInnerPolicy()
-	{
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetInnerPolicy() {
 		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "upDownPolicy");
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>,ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy()
-	{
+	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy() {
 		return serializationHelper.deserialize(IndexedStatePolicyAdapter.class, "forwardBackPolicy");
 	}
 

@@ -17,7 +17,7 @@ public class NoOpPolicy implements Policy<TargetRelativeDroneStateWithRecentActi
 
 	@Override
 	public DroneAction getAction(TargetRelativeDroneStateWithRecentActions droneState) {
-		return new DroneAction(LeftRightAction.NO_OP,UpDownAction.NO_OP,ForwardBackAction.NO_OP,SpinAction.NO_OP);
+		return new DroneAction(LeftRightAction.NO_OP, UpDownAction.NO_OP, ForwardBackAction.NO_OP, SpinAction.NO_OP);
 	}
 
 }

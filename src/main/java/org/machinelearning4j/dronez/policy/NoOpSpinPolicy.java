@@ -4,7 +4,8 @@ import org.ml4j.dronez.SpinAction;
 import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.mdp.Policy;
 
-public class NoOpSpinPolicy implements Policy<TargetRelativePositionWithVelocityAndRecentActions<SpinAction>, SpinAction> {
+public class NoOpSpinPolicy implements
+		Policy<TargetRelativePositionWithVelocityAndRecentActions<SpinAction>, SpinAction> {
 
 	/**
 	 * 

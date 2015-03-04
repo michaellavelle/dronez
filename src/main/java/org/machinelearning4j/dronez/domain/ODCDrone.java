@@ -30,23 +30,18 @@ public class ODCDrone extends Drone {
 			arDrone.hover();
 		} else {
 			// left/right, up/down, back/forward,rotation
-			for (int i = 0; i <10; i++)
-			{
-			arDrone.move(actionScaleFactor
-					* (float) action.getLeftRightAction().getValue(),
-				- 1 * actionScaleFactor
-							* (float) action.getUpDownAction().getValue(),
-					 actionScaleFactor
-							* (float) action.getForwardBackAction().getValue(),
-					actionScaleFactor
-							* (float) action.getSpinAction().getValue());
-			try {
-				Thread.sleep(30);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+			for (int i = 0; i < 10; i++) {
+				arDrone.move(actionScaleFactor * (float) action.getLeftRightAction().getValue(), -1 * actionScaleFactor
+						* (float) action.getUpDownAction().getValue(), actionScaleFactor
+						* (float) action.getForwardBackAction().getValue(), actionScaleFactor
+						* (float) action.getSpinAction().getValue());
+				try {
+					Thread.sleep(30);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		}
 	}
@@ -77,7 +72,7 @@ public class ODCDrone extends Drone {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-		} 
+		}
 		arDrone.playLed(18, 1, 500);
 
 	}
