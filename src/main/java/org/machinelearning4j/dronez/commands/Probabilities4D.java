@@ -2,7 +2,6 @@ package org.machinelearning4j.dronez.commands;
 
 import java.io.Serializable;
 
-import org.machinelearning4j.dronez.policy.RelativePositionVelocityIndexMapper;
 import org.machinelearning4j.dronez.policy.SpinActionIndexMapper;
 import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.ForwardBackAction;
@@ -14,6 +13,7 @@ import org.ml4j.dronez.TargetRelativeDroneStateWithRecentActions;
 import org.ml4j.dronez.TargetRelativePositionWithVelocity;
 import org.ml4j.dronez.UpDownAction;
 import org.ml4j.dronez.UpDownActionIndexMapper;
+import org.ml4j.dronez.policy.learning.TargetRelativePositionWithVelocityIndexMapper;
 import org.ml4j.mdp.IndexedProbabilitiesBuilder;
 import org.ml4j.mdp.StateActionSequenceListener;
 
@@ -33,19 +33,19 @@ public class Probabilities4D
 
 	public Probabilities4D() {
 		leftRightProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, LeftRightAction>(
-				new RelativePositionVelocityIndexMapper().getIndexedValues().length,
-				LeftRightAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(),
+				new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>().getIndexedValues().length,
+				LeftRightAction.ALL_ACTIONS.length, new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>(),
 				new LeftRightActionIndexMapper());
 		upDownProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, UpDownAction>(
-				new RelativePositionVelocityIndexMapper().getIndexedValues().length, UpDownAction.ALL_ACTIONS.length,
-				new RelativePositionVelocityIndexMapper(), new UpDownActionIndexMapper());
+				new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>().getIndexedValues().length, UpDownAction.ALL_ACTIONS.length,
+				new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>(), new UpDownActionIndexMapper());
 		forwardBackProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, ForwardBackAction>(
-				new RelativePositionVelocityIndexMapper().getIndexedValues().length,
-				ForwardBackAction.ALL_ACTIONS.length, new RelativePositionVelocityIndexMapper(),
+				new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>().getIndexedValues().length,
+				ForwardBackAction.ALL_ACTIONS.length, new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>(),
 				new ForwardBackActionIndexMapper());
 		spinProbabilitiesBuilder = new IndexedProbabilitiesBuilder<TargetRelativePositionWithVelocity, SpinAction>(
-				new RelativePositionVelocityIndexMapper().getIndexedValues().length, SpinAction.ALL_ACTIONS.length,
-				new RelativePositionVelocityIndexMapper(), new SpinActionIndexMapper());
+				new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>().getIndexedValues().length, SpinAction.ALL_ACTIONS.length,
+				new TargetRelativePositionWithVelocityIndexMapper<TargetRelativePositionWithVelocity>(), new SpinActionIndexMapper());
 
 	}
 
