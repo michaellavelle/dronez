@@ -11,10 +11,16 @@ import org.machinelearning4j.dronez.mock.MockDroneModel;
 import org.machinelearning4j.dronez.util.DronePositionPrinter;
 import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.DroneState;
+import org.ml4j.dronez.DroneStateWithRecentActions;
 import org.ml4j.dronez.ForwardBackAction;
 import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.dronez.PositionVelocity;
 import org.ml4j.dronez.UpDownAction;
+import org.ml4j.dronez.models.DroneModel;
+import org.ml4j.dronez.models.StatefulDroneStateWithoutActionsModelAdapter;
+import org.ml4j.dronez.models.factories.ModelFactory;
+import org.ml4j.dronez.models.factories.SerializedModelFactory;
+import org.ml4j.dronez.models.learning.DroneModelLearner;
 import org.ml4j.mdp.Model;
 import org.ml4j.mdp.StateObserver;
 
@@ -34,8 +40,29 @@ public abstract class AbstractDroneFlyer {
 			handler.setLevel(Level.SEVERE);
 		}
 	}
+	
+	
+	private static ModelFactory<DroneStateWithRecentActions,DroneStateWithRecentActions,DroneAction> createModelFactory() {
+		
+		// Create a serialized model factory
+		SerializedModelFactory<DroneStateWithRecentActions,DroneStateWithRecentActions,DroneAction> modelFactory = new SerializedModelFactory<DroneStateWithRecentActions,DroneStateWithRecentActions,DroneAction>();
+		// Register a serialized model with the model factory
+		modelFactory.registerModel(DroneModelLearner.MODEL_CLASS, "droneModel");
+		
+		return modelFactory;
+	}
 
 	protected static Model<DroneState, DroneState, DroneAction> createMockDroneModel() {
+		
+		boolean useActualFlightModel = false;
+		
+		if (useActualFlightModel)
+		{
+			return new StatefulDroneStateWithoutActionsModelAdapter((DroneModel)createModelFactory().createModel("droneModel"));
+		}
+		else
+		{
+		
 		Model<PositionVelocity, PositionVelocity, LeftRightAction> mockLeftRightModel = new MockDroneDimensionModel<LeftRightAction>(
 				-2.5, 2.5, false);
 
@@ -46,6 +73,7 @@ public abstract class AbstractDroneFlyer {
 				0, 4, false);
 
 		return new MockDroneModel(mockLeftRightModel, mockUpDownModel, mockForwardBackModel);
+		}
 	}
 
 	public DronePositionPrinter getDronePositionPrinter() {
