@@ -11,6 +11,7 @@ import org.ml4j.dronez.TargetRelativePositionWithVelocity;
 import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
 import org.ml4j.dronez.UpDownAction;
 import org.ml4j.dronez.UpDownActionIndexMapper;
+import org.ml4j.dronez.policy.rewards.MinimiseTargetRelativePositionRewardFunction;
 import org.ml4j.mdp.DiscreteIndexedStateMarkovDecisionProcessAdapter;
 import org.ml4j.mdp.DiscreteStateMarkovDecisionProcess;
 import org.ml4j.mdp.IndexMapper;
@@ -133,7 +134,7 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 
 		RelativePositionVelocityIndexMapper stateIndexMapper = new RelativePositionVelocityIndexMapper();
 
-		RewardFunction<TargetRelativePositionWithVelocity> rewardFunction = new MinimiseTargetRelativePositionRewardFunction();
+		RewardFunction<TargetRelativePositionWithVelocity> rewardFunction = new MinimiseTargetRelativePositionRewardFunction<TargetRelativePositionWithVelocity>();
 
 		Policy<TargetRelativePositionWithVelocity, A> initialPolicy = new RandomPolicy<TargetRelativePositionWithVelocity, A>(
 				actions);
