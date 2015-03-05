@@ -31,20 +31,20 @@ public class LearnedContinuousInnerPolicyCommandFactoryImpl extends
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
 		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class,
-				"minimiseDistanceToTargetLeftRightPolicy");
+				"minimiseDistanceToTargetLeftRightContinuousStatePolicy");
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetInnerPolicy() {
-		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetUpDownPolicy");
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetUpDownContinuousStatePolicy");
 
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy() {
-		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetForwardBackPolicy");
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetForwardBackContinuousStatePolicy");
 	}
 
 	@Override
