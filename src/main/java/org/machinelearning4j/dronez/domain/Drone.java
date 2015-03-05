@@ -42,7 +42,7 @@ public abstract class Drone implements StateActionController<DroneState, DroneAc
 
 		PolicyExecutor<DroneState, TargetRelativeDroneStateWithRecentActions, DroneAction> policyExecutor = new PolicyExecutor<DroneState, TargetRelativeDroneStateWithRecentActions, DroneAction>(
 				stateObserver, this, targetTrajectoryCommand.getPolicy(),
-				targetTrajectoryCommand.getPolicyStateMapper(), 30);
+				targetTrajectoryCommand.getPolicyStateMapper(), 0);
 
 		for (StateActionSequenceListener<DroneState, DroneState, DroneAction> listener : listeners) {
 			policyExecutor.addControllerStateActionSequenceListener(listener);

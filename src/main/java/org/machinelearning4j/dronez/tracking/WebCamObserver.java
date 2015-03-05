@@ -24,10 +24,13 @@ import org.ml4j.mdp.Trajectory;
 public class WebCamObserver extends AbstractWebCamObserver implements StateActionController<DroneState, DroneAction> {
 
 	private MovingTargetPositionEstimator movingTargetPositionEstimator;
-	private Runnable r = null;
+	//private Runnable r = null;
 	private String directoryPath;
 	private Trajectory<DroneState> targetTrajectory;
 
+	private FrameSequenceSource<SerializableBufferedImageAdapter,Long> webcamImageExtractor;
+
+	
 	private int iteration = 0;
 
 	public Trajectory<DroneState> getTargetTrajectory() {
@@ -47,12 +50,24 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 	public WebCamObserver() {
 		this(null);
 	}
+	
+	
+
+	@Override
+	public DroneState getCurrentState() {
+		try {
+			((WebcamImageExtractor)webcamImageExtractor).extractFrames(1, 0);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return super.getCurrentState();
+	}
 
 	public WebCamObserver(String directoryPath) {
 		super();
-		VelocityFilter leftRightVelocityFilter = new FIRVelocityFilter(0, 5, 300d / 1000d);
-		VelocityFilter upDownVelocityFilter = new FIRVelocityFilter(0, 5, 300d / 1000d);
-		VelocityFilter forwardBackVelocityFilter = new FIRVelocityFilter(0, 5, 300d / 1000d);
+		VelocityFilter leftRightVelocityFilter = new FIRVelocityFilter(0, 5, 150d / 1000d);
+		VelocityFilter upDownVelocityFilter = new FIRVelocityFilter(0, 5, 150d / 1000d);
+		VelocityFilter forwardBackVelocityFilter = new FIRVelocityFilter(0, 5, 150d / 1000d);
 
 		this.movingTargetPositionEstimator = new MovingTargetPositionEstimator(leftRightVelocityFilter,
 				upDownVelocityFilter, forwardBackVelocityFilter);
@@ -80,7 +95,7 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 	public void startObserving() {
 
 		System.out.println("Starting webcam");
-		final FrameSequenceSource<SerializableBufferedImageAdapter, Long> webcamImageExtractor = createWebcamFrameSequenceSource();
+		webcamImageExtractor = createWebcamFrameSequenceSource();
 
 		boolean stickyCog = true;
 		LabelAssigner<SerializableBufferedImageAdapter, Position3D> motionCOGLabelAssigner =
@@ -119,7 +134,7 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 			// FilenameFromTimestampAndPointGenerator("jpg")));
 
 		}
-
+		/*
 		r = new Runnable() {
 
 			@Override
@@ -137,6 +152,7 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 		};
 
 		new Thread(r).start();
+		*/
 
 	}
 

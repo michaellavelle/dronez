@@ -41,8 +41,24 @@ public class DronePositionDetectionPointLabelAssigner implements
 		Point right = null;
 		int w = data.getImage().getWidth();
 		int h = data.getImage().getHeight();
-		for (int x = 0; x < w; x++) {
-			for (int y = 0; y < h; y++) {
+		
+		int xStart = 0;
+		int yStart = w;
+		int xEnd = 0;
+		int yEnd = h;
+		
+		
+		if (position != null)
+		{
+			xStart = (int) Math.max(position.getX() - 100,0);
+			xEnd = (int) Math.min(position.getX() + 100,w);
+			yStart = (int) Math.max(position.getY() - 100,0);
+			yEnd = (int) Math.min(position.getY() + 100,h);
+		}
+		
+		
+		for (int x = xStart; x < xEnd; x++) {
+			for (int y = yStart; y < yEnd; y++) {
 
 				int pixelCol = data.getImage().getRGB(x, y);
 
@@ -60,6 +76,37 @@ public class DronePositionDetectionPointLabelAssigner implements
 				}
 
 			}
+		}
+		
+		if (left != null ||  right != null)
+		{
+			System.out.println("Short scan");
+		}
+		else
+		{
+			System.out.println("Full scan");
+		
+			for (int x = 0; x < w; x++) {
+				for (int y = 0; y < h; y++) {
+	
+					int pixelCol = data.getImage().getRGB(x, y);
+	
+					int pixelColGreen = pixelCol;
+					pixelCol &= 0x0FFFF0000;
+					pixelColGreen &= 0x0FF00FF00;
+	
+					int r = (pixelCol >> 16) & 0xff;
+					int g = (pixelColGreen >> 8) & 0xff;
+					if (g > 242 && r < 210) {
+						left = new Point(x, y);
+					}
+					if (r > 249 && g < 210) {
+						right = new Point(x, y);
+					}
+	
+				}
+			}
+		
 		}
 
 		if (left != null && right == null) {

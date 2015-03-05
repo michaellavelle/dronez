@@ -25,13 +25,13 @@ public class ODCDrone extends Drone {
 		arDrone.playLed(18, 1, 500);
 
 		arDrone.playLed(18, 1, 500);
-		float actionScaleFactor = 0.05f;
+		float actionScaleFactor = 0.1f;
 		if (action.isNoOp()) {
 			arDrone.hover();
 		} else {
 			// left/right, up/down, back/forward,rotation
-			for (int i = 0; i < 10; i++) {
-				arDrone.move(actionScaleFactor * (float) action.getLeftRightAction().getValue(), -1 * actionScaleFactor
+			for (int i = 0; i < 5; i++) {
+				arDrone.move(actionScaleFactor * (float) action.getLeftRightAction().getValue(), -2 * actionScaleFactor
 						* (float) action.getUpDownAction().getValue(), actionScaleFactor
 						* (float) action.getForwardBackAction().getValue(), actionScaleFactor
 						* (float) action.getSpinAction().getValue());

@@ -29,14 +29,17 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 	private DiscreteIndexedStateMarkovDecisionProcessAdapter<TargetRelativePositionWithVelocity, ForwardBackAction> learnedForwardBackMdp;
 
 	private SerializationHelper serializationHelper;
+	private boolean loadPreviousState;
 
-	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(String savedPolicyDirectory) {
+	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(String savedPolicyDirectory,boolean loadPreviousState) {
+		this.loadPreviousState = loadPreviousState;
 		if (savedPolicyDirectory != null) {
 			serializationHelper = new SerializationHelper(savedPolicyDirectory);
 		}
 	}
 
-	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(ClassLoader classLoader, String savedPolicyDirectory) {
+	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(ClassLoader classLoader, String savedPolicyDirectory,boolean loadPreviousState) {
+		this.loadPreviousState = loadPreviousState;
 		if (savedPolicyDirectory != null && classLoader != null) {
 			serializationHelper = new SerializationHelper(classLoader, savedPolicyDirectory);
 		}
@@ -44,20 +47,29 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 
 	private Probabilities4D probabilities4D;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void init() {
-		this.probabilities4D = new Probabilities4D();
-		this.learnedLeftRightMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(
-				LeftRightAction.ALL_ACTIONS, new LeftRightActionIndexMapper(),
-				probabilities4D.getLeftRightProbabilitiesBuilder());
-		this.learnedUpDownMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(
-				UpDownAction.ALL_ACTIONS, new UpDownActionIndexMapper(),
-				probabilities4D.getUpDownProbabilitiesBuilder());
-		this.learnedForwardBackMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(
-				ForwardBackAction.ALL_ACTIONS, new ForwardBackActionIndexMapper(),
-				probabilities4D.getForwardBackProbabilitiesBuilder());
+		if (loadPreviousState && serializationHelper != null)
+		{
+			this.probabilities4D = serializationHelper.deserialize(Probabilities4D.class, "probabilities");
+		    //this.probabilities4D = new Probabilities4D();
+			this.learnedLeftRightMdp =serializationHelper.deserialize(DiscreteIndexedStateMarkovDecisionProcessAdapter.class,"leftRightMdp");		  
+			this.learnedUpDownMdp =serializationHelper.deserialize(DiscreteIndexedStateMarkovDecisionProcessAdapter.class,"upDownMdp");
+			this.learnedForwardBackMdp =serializationHelper.deserialize(DiscreteIndexedStateMarkovDecisionProcessAdapter.class,"forwardBackMdp");
+			this.learnedLeftRightMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(LeftRightAction.ALL_ACTIONS,new LeftRightActionIndexMapper(),probabilities4D.getLeftRightProbabilitiesBuilder());
+			this.learnedUpDownMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(UpDownAction.ALL_ACTIONS,new UpDownActionIndexMapper(),probabilities4D.getUpDownProbabilitiesBuilder());
+			this.learnedForwardBackMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(ForwardBackAction.ALL_ACTIONS,new ForwardBackActionIndexMapper(),probabilities4D.getForwardBackProbabilitiesBuilder());		
+		}
+		else
+		{
+			this.probabilities4D = new Probabilities4D();
+			this.learnedLeftRightMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(LeftRightAction.ALL_ACTIONS,new LeftRightActionIndexMapper(),probabilities4D.getLeftRightProbabilitiesBuilder());
+			this.learnedUpDownMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(UpDownAction.ALL_ACTIONS,new UpDownActionIndexMapper(),probabilities4D.getUpDownProbabilitiesBuilder());
+			this.learnedForwardBackMdp = createDiscreteIndexedStateSingleDimensionMarkovDecisionProcess(ForwardBackAction.ALL_ACTIONS,new ForwardBackActionIndexMapper(),probabilities4D.getForwardBackProbabilitiesBuilder());		
+		}
 		super.init();
-		super.init();
+
 	}
 
 	@Override
