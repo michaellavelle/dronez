@@ -1,5 +1,7 @@
 package org.machinelearning4j.dronez.commands;
 
+import org.machinelearning4j.dronez.policy.SimpleForwardBackPolicy;
+import org.machinelearning4j.dronez.policy.SimpleUpDownPolicy;
 import org.ml4j.dronez.ForwardBackAction;
 import org.ml4j.dronez.LeftRightAction;
 import org.ml4j.dronez.TargetRelativePositionWithVelocityAndRecentActions;
@@ -31,20 +33,22 @@ public class LearnedContinuousInnerPolicyCommandFactoryImpl extends
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
 		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class,
-				"minimiseDistanceToTargetLeftRightContinuousStatePolicy");
+				"minimiseDistanceToTargetLeftRightContinuousStatePolicyExtendedRun");
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetInnerPolicy() {
-		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetUpDownContinuousStatePolicy");
+		//return new SimpleUpDownPolicy();
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetUpDownContinuousStatePolicyExtendedRun");
 
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy() {
-		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetForwardBackContinuousStatePolicy");
+		//return new SimpleForwardBackPolicy();
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetForwardBackContinuousStatePolicyExtendedRun");
 	}
 
 	@Override
