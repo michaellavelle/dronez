@@ -58,7 +58,8 @@ public abstract class AbstractDroneFlyer {
 		
 		if (useActualFlightModel)
 		{
-			return new StatefulDroneStateWithoutActionsModelAdapter((DroneModel)createModelFactory().createModel("droneModel"));
+			int modelRecentActionCount = 10;
+			return new StatefulDroneStateWithoutActionsModelAdapter((DroneModel)createModelFactory().createModel("droneModel"),modelRecentActionCount);
 		}
 		else
 		{
