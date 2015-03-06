@@ -25,7 +25,7 @@ public class ODCDrone extends Drone {
 		arDrone.playLed(18, 1, 500);
 
 		arDrone.playLed(18, 1, 500);
-		float actionScaleFactor = 0.1f;
+		float actionScaleFactor = 0.05f;
 		if (action.isNoOp()) {
 			arDrone.hover();
 		} else {
