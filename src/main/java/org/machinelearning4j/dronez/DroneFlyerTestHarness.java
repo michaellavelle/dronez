@@ -2,6 +2,7 @@ package org.machinelearning4j.dronez;
 
 import org.machinelearning4j.dronez.commands.CommandFactory;
 import org.machinelearning4j.dronez.commands.HoverCommand;
+import org.machinelearning4j.dronez.commands.LearnedContinuousInnerPolicyCommandFactoryImpl;
 import org.machinelearning4j.dronez.commands.LearnedDiscreteInnerPolicyCommandFactoryImpl;
 import org.machinelearning4j.dronez.commands.NoOpCommand;
 import org.machinelearning4j.dronez.commands.TargetTrajectoryCommand;
@@ -15,6 +16,7 @@ import org.machinelearning4j.dronez.trajectory.CircleTrajectory;
 import org.ml4j.dronez.DroneAction;
 import org.ml4j.dronez.DroneState;
 import org.ml4j.dronez.PositionVelocity;
+import org.ml4j.dronez.policy.learning.PolicyLearner;
 import org.ml4j.mdp.Model;
 import org.ml4j.mdp.StateObserver;
 import org.ml4j.mdp.Trajectory;
@@ -36,6 +38,11 @@ public class DroneFlyerTestHarness extends AbstractDroneFlyer {
 
 		CommandFactory commandFactory = LearnedDiscreteInnerPolicyCommandFactoryImpl.create(
 				DroneFlyerTestHarness.class.getClassLoader(), "serialized");
+		
+		
+		//CommandFactory commandFactory = LearnedContinuousInnerPolicyCommandFactoryImpl.create(
+		//		PolicyLearner.class.getClassLoader(), "org/ml4j/dronez/policies");
+		
 		commandFactory.init();
 
 		if (useMocks) {

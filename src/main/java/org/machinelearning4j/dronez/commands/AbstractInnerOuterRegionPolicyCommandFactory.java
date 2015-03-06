@@ -23,7 +23,7 @@ public abstract class AbstractInnerOuterRegionPolicyCommandFactory extends Abstr
 		outerLeftRightPolicy = new SimpleLeftRightPolicy();
 		outerUpDownPolicy = new SimpleUpDownPolicy();
 		outerForwardBackPolicy = new SimpleForwardBackPolicy();
-		boundary = 1;
+		boundary = 2.5;
 		super.init();
 	}
 

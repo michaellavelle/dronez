@@ -48,7 +48,8 @@ public abstract class AbstractDroneFlyer {
 		SerializedModelFactory<DroneStateWithRecentActions,DroneStateWithRecentActions,DroneAction> modelFactory = new SerializedModelFactory<DroneStateWithRecentActions,DroneStateWithRecentActions,DroneAction>();
 		// Register a serialized model with the model factory
 		modelFactory.registerModel(DroneModelLearner.MODEL_CLASS, "droneModel");
-		
+		modelFactory.registerModel(DroneModelLearner.MODEL_CLASS, "droneModelExtendedRun");
+
 		return modelFactory;
 	}
 
