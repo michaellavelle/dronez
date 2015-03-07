@@ -69,7 +69,7 @@ public abstract class AbstractDroneFlyer {
 				-2.5, 2.5, false);
 
 		Model<PositionVelocity, PositionVelocity, UpDownAction> mockUpDownModel = new MockDroneDimensionModel<UpDownAction>(
-				-2.5, 2.5, true);
+				-2.5, 2.5, false);
 
 		Model<PositionVelocity, PositionVelocity, ForwardBackAction> mockForwardBackModel = new MockDroneDimensionModel<ForwardBackAction>(
 				0, 4, false);
