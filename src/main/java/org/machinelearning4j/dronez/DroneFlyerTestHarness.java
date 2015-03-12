@@ -38,13 +38,25 @@ public class DroneFlyerTestHarness extends AbstractDroneFlyer {
 
 		int recentActionCount = 2;
 
+		CommandFactory commandFactory = null;
+		boolean useContinuousPolicy = false;
 		
-		CommandFactory commandFactory = LearnedDiscreteInnerPolicyCommandFactoryImpl.create(
+		
+		if (!useContinuousPolicy)
+		{
+		
+			commandFactory = LearnedDiscreteInnerPolicyCommandFactoryImpl.create(
 				DroneFlyerTestHarness.class.getClassLoader(), "serialized",recentActionCount);
 		
+		}
+		else
+		{
 		
-		//CommandFactory commandFactory = LearnedContinuousInnerPolicyCommandFactoryImpl.create(
-		//		PolicyLearner.class.getClassLoader(), "org/ml4j/dronez/policies");
+			commandFactory = LearnedContinuousInnerPolicyCommandFactoryImpl.create(
+				PolicyLearner.class.getClassLoader(), "org/ml4j/dronez/policies",recentActionCount);
+		
+		}
+
 		
 		commandFactory.init();
 

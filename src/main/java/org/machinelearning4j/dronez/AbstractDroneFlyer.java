@@ -49,6 +49,8 @@ public abstract class AbstractDroneFlyer {
 		// Register a serialized model with the model factory
 		modelFactory.registerModel(DroneModelLearner.MODEL_CLASS, "droneModel");
 		modelFactory.registerModel(DroneModelLearner.MODEL_CLASS, "droneModelExtendedRun");
+		modelFactory.registerModel(DroneModelLearner.MODEL_CLASS, "droneModel_12032015_3");
+
 
 		return modelFactory;
 	}
@@ -60,7 +62,7 @@ public abstract class AbstractDroneFlyer {
 		if (useActualFlightModel)
 		{
 			int modelRecentActionCount = 10;
-			return new StatefulDroneStateWithoutActionsModelAdapter((DroneModel)createModelFactory().createModel("droneModel"),modelRecentActionCount);
+			return new StatefulDroneStateWithoutActionsModelAdapter((DroneModel)createModelFactory().createModel("droneModel_12032015_3"),modelRecentActionCount);
 		}
 		else
 		{
