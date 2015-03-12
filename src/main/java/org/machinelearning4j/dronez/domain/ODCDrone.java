@@ -31,7 +31,7 @@ public class ODCDrone extends Drone {
 		} else {
 			// left/right, up/down, back/forward,rotation
 			for (int i = 0; i < 5; i++) {
-				arDrone.move(actionScaleFactor * (float) action.getLeftRightAction().getValue(), -2 * actionScaleFactor
+				arDrone.move(actionScaleFactor * (float) action.getLeftRightAction().getValue(), +2 * actionScaleFactor
 						* (float) action.getUpDownAction().getValue(), actionScaleFactor
 						* (float) action.getForwardBackAction().getValue(), actionScaleFactor
 						* (float) action.getSpinAction().getValue());

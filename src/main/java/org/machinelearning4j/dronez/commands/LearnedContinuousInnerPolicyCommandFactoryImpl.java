@@ -35,14 +35,14 @@ public class LearnedContinuousInnerPolicyCommandFactoryImpl extends
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
 		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class,
-				"minimiseDistanceToTargetLeftRightContinuousStatePolicy_12032015_1");
+				"minimiseDistanceToTargetLeftRightContinuousStatePolicy_12032015_4");
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> createUpDownDistanceToTargetInnerPolicy() {
 		//return new SimpleUpDownPolicy();
-		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetUpDownContinuousStatePolicy_12032015_1");
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetUpDownContinuousStatePolicy_12032015_4");
 
 	}
 
@@ -50,7 +50,7 @@ public class LearnedContinuousInnerPolicyCommandFactoryImpl extends
 	@Override
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> createForwardBackDistanceToTargetInnerPolicy() {
 		//return new SimpleForwardBackPolicy();
-		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetForwardBackContinuousStatePolicy_12032015_1");
+		return serializationHelper.deserialize(ContinuousStateValueFunctionGreedyPolicy.class, "minimiseDistanceToTargetForwardBackContinuousStatePolicy_12032015_4");
 	}
 
 	@Override
