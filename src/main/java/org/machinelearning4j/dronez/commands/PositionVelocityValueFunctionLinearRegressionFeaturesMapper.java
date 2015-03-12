@@ -41,7 +41,8 @@ public class PositionVelocityValueFunctionLinearRegressionFeaturesMapper impleme
 	private static final long serialVersionUID = 1L;
 
 	private boolean includeRecentActions = false;
-
+	private int recentActionCount = PositionVelocityWithRecentActions.DEFAULT_RECENT_ACTION_COUNT;
+	
 	@Override
 	public double[] toFeaturesVector(PositionVelocityWithRecentActions<LeftRightAction> data) {
 
@@ -50,7 +51,7 @@ public class PositionVelocityValueFunctionLinearRegressionFeaturesMapper impleme
 		features[1] = Math.pow(data.getPosition(), 2d);
 		features[2] = Math.pow(data.getVelocity(), 2d);
 		if (includeRecentActions) {
-			for (int i = 0; i < PositionVelocityWithRecentActions.RECENT_ACTION_COUNT; i++) {
+			for (int i = 0; i < recentActionCount; i++) {
 				features[3 + i] = data.getRecentActions().get(i).ordinal() - 1;
 			}
 		}
@@ -59,7 +60,7 @@ public class PositionVelocityValueFunctionLinearRegressionFeaturesMapper impleme
 
 	@Override
 	public int getFeatureCount() {
-		return includeRecentActions ? (3 + PositionVelocityWithRecentActions.RECENT_ACTION_COUNT) : 3;
+		return includeRecentActions ? (3 + recentActionCount) : 3;
 
 	}
 

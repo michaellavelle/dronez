@@ -11,8 +11,8 @@ public class HoverCommand extends TargetTrajectoryCommand {
 
 	public HoverCommand(DroneState hoverState, int iterations,
 			Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> distanceToTargetPolicy,
-			StateActionSequenceHistory<?, ?, DroneAction> history) {
-		super(new ConstantStateTrajectory<DroneState>(hoverState), iterations, distanceToTargetPolicy, history);
+			StateActionSequenceHistory<?, ?, DroneAction> history,int recentActionCount) {
+		super(new ConstantStateTrajectory<DroneState>(hoverState), iterations, distanceToTargetPolicy, history,recentActionCount);
 	}
 
 }

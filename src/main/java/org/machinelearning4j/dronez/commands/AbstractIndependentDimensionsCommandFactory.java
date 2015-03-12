@@ -13,6 +13,10 @@ import org.ml4j.mdp.Policy;
 
 public abstract class AbstractIndependentDimensionsCommandFactory extends AbstractCommandFactory {
 
+	public AbstractIndependentDimensionsCommandFactory(int recentActionCount) {
+		super(recentActionCount);
+	}
+
 	protected Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> createDistanceToTargetPolicy() {
 		return new IndependentDimensionsTargetTrajectoryPolicy(createLeftRightDistanceToTargetPolicy(),
 				createUpDownDistanceToTargetPolicy(), createForwardBackDistanceToTargetPolicy(),

@@ -14,18 +14,19 @@ public class LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl extend
 
 	private static SerializationHelper serializationHelper;
 
-	public static LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory) {
+	public static LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory,int recentActionCount) {
 		serializationHelper = new SerializationHelper(savedPolicyDirectory);
-		return new LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl();
+		return new LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl(recentActionCount);
 	}
 
 	public static LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl create(ClassLoader classLoader,
-			String savedPolicyDirectory) {
+			String savedPolicyDirectory,int recentActionCount) {
 		serializationHelper = new SerializationHelper(classLoader, savedPolicyDirectory);
-		return new LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl();
+		return new LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl(recentActionCount);
 	}
 
-	private LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl() {
+	private LearnedHybridDiscreteContinuousInnerPolicyCommandFactoryImpl(int recentActionCount) {
+		super(recentActionCount);
 	}
 
 	@SuppressWarnings("unchecked")

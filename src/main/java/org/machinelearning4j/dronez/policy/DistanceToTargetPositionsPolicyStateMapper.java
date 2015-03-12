@@ -25,27 +25,29 @@ public class DistanceToTargetPositionsPolicyStateMapper implements
 
 	private Trajectory<DroneState> trajectory;
 	private StateActionSequenceHistory<?, ?, DroneAction> history;
-
+	private int recentActionCount;
+	
 	public DistanceToTargetPositionsPolicyStateMapper(Trajectory<DroneState> trajectory,
-			StateActionSequenceHistory<?, ?, DroneAction> history) {
+			StateActionSequenceHistory<?, ?, DroneAction> history,int recentActionCount) {
 		this.trajectory = trajectory;
 		this.history = history;
+		this.recentActionCount = recentActionCount;
 	}
 
 	@Override
 	public TargetRelativeDroneStateWithRecentActions getPolicyState(DroneState droneState, long iteration) {
 
 		PolicyStateMapper<PositionVelocity, TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>> leftRightPositionMapper = new DistanceToTargetPositionPolicyStateMapper<LeftRightAction>(
-				new LeftRightTrajectory(trajectory), history, new LeftRightActionExtractor());
+				new LeftRightTrajectory(trajectory), history, new LeftRightActionExtractor(),recentActionCount);
 
 		PolicyStateMapper<PositionVelocity, TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>> upDownPositionMapper = new DistanceToTargetPositionPolicyStateMapper<UpDownAction>(
-				new UpDownTrajectory(trajectory), history, new UpDownActionExtractor());
+				new UpDownTrajectory(trajectory), history, new UpDownActionExtractor(),recentActionCount);
 
 		PolicyStateMapper<PositionVelocity, TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>> forwardBackPositionMapper = new DistanceToTargetPositionPolicyStateMapper<ForwardBackAction>(
-				new ForwardBackTrajectory(trajectory), history, new ForwardBackActionExtractor());
+				new ForwardBackTrajectory(trajectory), history, new ForwardBackActionExtractor(),recentActionCount);
 
 		PolicyStateMapper<PositionVelocity, TargetRelativePositionWithVelocityAndRecentActions<SpinAction>> spinPositionMapper = new DistanceToTargetPositionPolicyStateMapper<SpinAction>(
-				new SpinTrajectory(trajectory), history, new SpinActionExtractor());
+				new SpinTrajectory(trajectory), history, new SpinActionExtractor(),recentActionCount);
 
 		TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction> leftRightPositionVelocity = leftRightPositionMapper
 				.getPolicyState(droneState.getLeftRightPositionVelocity(), iteration);

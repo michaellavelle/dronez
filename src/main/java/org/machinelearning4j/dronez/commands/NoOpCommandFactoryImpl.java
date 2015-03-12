@@ -11,6 +11,10 @@ import org.ml4j.mdp.Policy;
 
 public class NoOpCommandFactoryImpl extends AbstractIndependentDimensionsCommandFactory {
 
+	public NoOpCommandFactoryImpl(int recentActionCount) {
+		super(recentActionCount);
+	}
+
 	@Override
 	public void updatePolicies() {
 		// No-op

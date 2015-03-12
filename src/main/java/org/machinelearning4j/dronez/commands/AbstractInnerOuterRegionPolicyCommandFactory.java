@@ -12,6 +12,10 @@ import org.ml4j.mdp.Policy;
 
 public abstract class AbstractInnerOuterRegionPolicyCommandFactory extends AbstractIndependentDimensionsCommandFactory {
 
+	public AbstractInnerOuterRegionPolicyCommandFactory(int recentActionCount) {
+		super(recentActionCount);
+	}
+
 	private Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> outerLeftRightPolicy;
 	private Policy<TargetRelativePositionWithVelocityAndRecentActions<UpDownAction>, UpDownAction> outerUpDownPolicy;
 	private Policy<TargetRelativePositionWithVelocityAndRecentActions<ForwardBackAction>, ForwardBackAction> outerForwardBackPolicy;

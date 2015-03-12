@@ -13,12 +13,15 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 
 	protected StateActionSequenceHistory<DroneState, DroneState, DroneAction> history;
 
+	private int recentActionCount;
+	
 	public void init() {
 		this.distanceToTargetPolicy = createDistanceToTargetPolicy();
 	}
 
-	public AbstractCommandFactory() {
+	public AbstractCommandFactory(int recentActionCount) {
 		this.history = new StateActionSequenceHistory<DroneState, DroneState, DroneAction>();
+		this.recentActionCount = recentActionCount;
 	}
 
 	protected abstract Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> createDistanceToTargetPolicy();
@@ -26,7 +29,7 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 	@Override
 	public HoverCommand createHoverCommand(DroneState hoverState, int iterations) {
 
-		HoverCommand hoverCommand = new HoverCommand(hoverState, iterations, distanceToTargetPolicy, history);
+		HoverCommand hoverCommand = new HoverCommand(hoverState, iterations, distanceToTargetPolicy, history,recentActionCount);
 
 		return hoverCommand;
 	}
@@ -35,13 +38,13 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 	public TargetTrajectoryCommand createTargetTrajectoryCommand(Trajectory<DroneState> trajectory, int iterations) {
 
 		TargetTrajectoryCommand targetTrajectoryCommand = new TargetTrajectoryCommand(trajectory, iterations,
-				distanceToTargetPolicy, history);
+				distanceToTargetPolicy, history,recentActionCount);
 		return targetTrajectoryCommand;
 	}
 
 	@Override
 	public NoOpCommand createNoOpCommand(int iterations) {
-		NoOpCommand noOpCommand = new NoOpCommand(iterations, history);
+		NoOpCommand noOpCommand = new NoOpCommand(iterations, history,recentActionCount);
 		return noOpCommand;
 	}
 

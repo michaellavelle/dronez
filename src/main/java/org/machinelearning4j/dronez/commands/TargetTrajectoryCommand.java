@@ -15,14 +15,16 @@ public class TargetTrajectoryCommand extends
 	private Trajectory<DroneState> trajectory;
 	private Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> distanceToTargetPolicy;
 	private StateActionSequenceHistory<?, ?, DroneAction> history;
-
+	private int recentActionCount;
+	
 	public TargetTrajectoryCommand(Trajectory<DroneState> trajectory, int iterations,
 			Policy<TargetRelativeDroneStateWithRecentActions, DroneAction> distanceToTargetPolicy,
-			StateActionSequenceHistory<?, ?, DroneAction> history) {
+			StateActionSequenceHistory<?, ?, DroneAction> history,int recentActionCount) {
 		super(iterations);
 		this.trajectory = trajectory;
 		this.distanceToTargetPolicy = distanceToTargetPolicy;
 		this.history = history;
+		this.recentActionCount = recentActionCount;
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class TargetTrajectoryCommand extends
 
 	@Override
 	public PolicyStateMapper<DroneState, TargetRelativeDroneStateWithRecentActions> getPolicyStateMapper() {
-		return new DistanceToTargetPositionsPolicyStateMapper(trajectory, history);
+		return new DistanceToTargetPositionsPolicyStateMapper(trajectory, history,recentActionCount);
 	}
 
 	public Trajectory<DroneState> getTrajectory() {

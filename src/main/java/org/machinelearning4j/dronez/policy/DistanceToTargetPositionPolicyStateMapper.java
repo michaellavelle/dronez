@@ -45,19 +45,22 @@ public class DistanceToTargetPositionPolicyStateMapper<A extends NumericAction> 
 	private Trajectory<Double> targetPositionTrajectory;
 	private StateActionSequenceHistory<?, ?, DroneAction> history;
 	private ActionExtractor<A> actionExtractor;
-
+	private int recentActionCount;
+	
+	
 	public DistanceToTargetPositionPolicyStateMapper(Trajectory<Double> targetPositionTrajectory,
-			StateActionSequenceHistory<?, ?, DroneAction> history, ActionExtractor<A> actionExtractor) {
+			StateActionSequenceHistory<?, ?, DroneAction> history, ActionExtractor<A> actionExtractor,int recentActionCount) {
 		this.targetPositionTrajectory = targetPositionTrajectory;
 		this.history = history;
 		this.actionExtractor = actionExtractor;
+		this.recentActionCount = recentActionCount;
 	}
 
 	@Override
 	public TargetRelativePositionWithVelocityAndRecentActions<A> getPolicyState(PositionVelocity state, long iteration) {
 		double distanceToTargetPosition = targetPositionTrajectory.getTarget(iteration) - state.getPosition();
 
-		List<DroneAction> actions = history.getRecentActions(PositionVelocityWithRecentActions.RECENT_ACTION_COUNT,
+		List<DroneAction> actions = history.getRecentActions(recentActionCount,
 				new DroneAction(LeftRightAction.NO_OP, UpDownAction.NO_OP, ForwardBackAction.NO_OP, SpinAction.NO_OP));
 
 		return new TargetRelativePositionWithVelocityAndRecentActions<A>(distanceToTargetPosition, state.getVelocity(),

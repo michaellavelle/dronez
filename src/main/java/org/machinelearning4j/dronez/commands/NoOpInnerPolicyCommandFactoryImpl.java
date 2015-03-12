@@ -11,6 +11,10 @@ import org.ml4j.mdp.Policy;
 
 public class NoOpInnerPolicyCommandFactoryImpl extends AbstractInnerOuterRegionPolicyCommandFactory {
 
+	public NoOpInnerPolicyCommandFactoryImpl(int recentActionCount) {
+		super(recentActionCount);
+	}
+
 	protected Policy<TargetRelativePositionWithVelocityAndRecentActions<LeftRightAction>, LeftRightAction> createLeftRightDistanceToTargetInnerPolicy() {
 		return new NoOpLeftRightPolicy();
 	}

@@ -15,18 +15,20 @@ public class LearnedContinuousInnerPolicyCommandFactoryImpl extends
 
 	private static SerializationHelper serializationHelper;
 
-	public static LearnedContinuousInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory) {
+	public static LearnedContinuousInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory,int recentActionCount) {
 		serializationHelper = new SerializationHelper(savedPolicyDirectory);
-		return new LearnedContinuousInnerPolicyCommandFactoryImpl();
+		return new LearnedContinuousInnerPolicyCommandFactoryImpl(recentActionCount);
 	}
 
 	public static LearnedContinuousInnerPolicyCommandFactoryImpl create(ClassLoader classLoader,
-			String savedPolicyDirectory) {
+			String savedPolicyDirectory,int recentActionCount) {
 		serializationHelper = new SerializationHelper(classLoader, savedPolicyDirectory);
-		return new LearnedContinuousInnerPolicyCommandFactoryImpl();
+		return new LearnedContinuousInnerPolicyCommandFactoryImpl(recentActionCount);
 	}
 
-	private LearnedContinuousInnerPolicyCommandFactoryImpl() {
+	private LearnedContinuousInnerPolicyCommandFactoryImpl(int recentActionCount) {
+		super(recentActionCount);
+
 	}
 
 	@SuppressWarnings("unchecked")

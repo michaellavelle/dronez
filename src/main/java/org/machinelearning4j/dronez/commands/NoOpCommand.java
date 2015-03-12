@@ -17,7 +17,9 @@ public class NoOpCommand extends
 	private StateActionSequenceHistory<?, ?, DroneAction> history;
 	private Trajectory<DroneState> trajectory;
 
-	public NoOpCommand(int iterations, StateActionSequenceHistory<?, ?, DroneAction> history) {
+	private int recentActionCount;
+	
+	public NoOpCommand(int iterations, StateActionSequenceHistory<?, ?, DroneAction> history,int recentActionCount) {
 		super(iterations);
 		this.trajectory = new Trajectory<DroneState>() {
 
@@ -29,6 +31,7 @@ public class NoOpCommand extends
 		};
 		;
 		this.history = history;
+		this.recentActionCount = recentActionCount;
 	}
 
 	@Override
@@ -38,7 +41,7 @@ public class NoOpCommand extends
 
 	@Override
 	public PolicyStateMapper<DroneState, TargetRelativeDroneStateWithRecentActions> getPolicyStateMapper() {
-		return new DistanceToTargetPositionsPolicyStateMapper(trajectory, history);
+		return new DistanceToTargetPositionsPolicyStateMapper(trajectory, history,recentActionCount);
 	}
 
 }

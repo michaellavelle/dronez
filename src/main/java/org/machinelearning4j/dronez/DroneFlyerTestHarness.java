@@ -36,8 +36,11 @@ public class DroneFlyerTestHarness extends AbstractDroneFlyer {
 
 		boolean useMocks = true;
 
+		int recentActionCount = 2;
+
+		
 		CommandFactory commandFactory = LearnedDiscreteInnerPolicyCommandFactoryImpl.create(
-				DroneFlyerTestHarness.class.getClassLoader(), "serialized");
+				DroneFlyerTestHarness.class.getClassLoader(), "serialized",recentActionCount);
 		
 		
 		//CommandFactory commandFactory = LearnedContinuousInnerPolicyCommandFactoryImpl.create(

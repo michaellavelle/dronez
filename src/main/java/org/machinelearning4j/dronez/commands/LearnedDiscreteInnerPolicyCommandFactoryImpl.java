@@ -12,18 +12,19 @@ public class LearnedDiscreteInnerPolicyCommandFactoryImpl extends AbstractInnerO
 
 	private static SerializationHelper serializationHelper;
 
-	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory) {
+	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(String savedPolicyDirectory,int recentActionCount) {
 		serializationHelper = new SerializationHelper(savedPolicyDirectory);
-		return new LearnedDiscreteInnerPolicyCommandFactoryImpl();
+		return new LearnedDiscreteInnerPolicyCommandFactoryImpl(recentActionCount);
 	}
 
 	public static LearnedDiscreteInnerPolicyCommandFactoryImpl create(ClassLoader classLoader,
-			String savedPolicyDirectory) {
+			String savedPolicyDirectory,int recentActionCount) {
 		serializationHelper = new SerializationHelper(classLoader, savedPolicyDirectory);
-		return new LearnedDiscreteInnerPolicyCommandFactoryImpl();
+		return new LearnedDiscreteInnerPolicyCommandFactoryImpl(recentActionCount);
 	}
 
-	private LearnedDiscreteInnerPolicyCommandFactoryImpl() {
+	private LearnedDiscreteInnerPolicyCommandFactoryImpl(int recentActionCount) {
+		super(recentActionCount);
 	}
 
 	@SuppressWarnings("unchecked")

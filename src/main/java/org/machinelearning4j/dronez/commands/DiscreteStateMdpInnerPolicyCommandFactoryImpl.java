@@ -32,14 +32,17 @@ public class DiscreteStateMdpInnerPolicyCommandFactoryImpl extends AbstractInner
 	private SerializationHelper serializationHelper;
 	private boolean loadPreviousState;
 
-	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(String savedPolicyDirectory,boolean loadPreviousState) {
+	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(String savedPolicyDirectory,boolean loadPreviousState,int recentActionCount) {
+		super(recentActionCount);
 		this.loadPreviousState = loadPreviousState;
 		if (savedPolicyDirectory != null) {
 			serializationHelper = new SerializationHelper(savedPolicyDirectory);
 		}
 	}
 
-	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(ClassLoader classLoader, String savedPolicyDirectory,boolean loadPreviousState) {
+	public DiscreteStateMdpInnerPolicyCommandFactoryImpl(ClassLoader classLoader, String savedPolicyDirectory,boolean loadPreviousState,int recentActionCount) {
+		super(recentActionCount);
+
 		this.loadPreviousState = loadPreviousState;
 		if (savedPolicyDirectory != null && classLoader != null) {
 			serializationHelper = new SerializationHelper(classLoader, savedPolicyDirectory);
