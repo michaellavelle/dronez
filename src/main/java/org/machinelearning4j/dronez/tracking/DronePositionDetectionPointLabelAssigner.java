@@ -80,11 +80,11 @@ public class DronePositionDetectionPointLabelAssigner implements
 		
 		if (left != null ||  right != null)
 		{
-			System.out.println("Short scan");
+			//System.out.println("Short scan");
 		}
 		else
 		{
-			System.out.println("Full scan");
+			//System.out.println("Full scan");
 		
 			for (int x = 0; x < w; x++) {
 				for (int y = 0; y < h; y++) {
