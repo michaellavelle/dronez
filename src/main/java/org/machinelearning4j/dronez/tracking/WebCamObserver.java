@@ -24,7 +24,7 @@ import org.ml4j.mdp.Trajectory;
 public class WebCamObserver extends AbstractWebCamObserver implements StateActionController<DroneState, DroneAction> {
 
 	private MovingTargetPositionEstimator movingTargetPositionEstimator;
-	//private Runnable r = null;
+	private Runnable r = null;
 	private String directoryPath;
 	private Trajectory<DroneState> targetTrajectory;
 
@@ -134,7 +134,7 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 			// FilenameFromTimestampAndPointGenerator("jpg")));
 
 		}
-		/*
+
 		r = new Runnable() {
 
 			@Override
@@ -152,7 +152,6 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 		};
 
 		new Thread(r).start();
-		*/
 
 	}
 
