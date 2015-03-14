@@ -55,19 +55,20 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 
 	@Override
 	public DroneState getCurrentState() {
+		/*
 		try {
 			((WebcamImageExtractor)webcamImageExtractor).extractFrames(1, 0);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 		return super.getCurrentState();
 	}
 
 	public WebCamObserver(String directoryPath) {
 		super();
-		VelocityFilter leftRightVelocityFilter = new FIRVelocityFilter(0, 5, 150d / 1000d);
-		VelocityFilter upDownVelocityFilter = new FIRVelocityFilter(0, 5, 150d / 1000d);
-		VelocityFilter forwardBackVelocityFilter = new FIRVelocityFilter(0, 5, 150d / 1000d);
+		VelocityFilter leftRightVelocityFilter = new FIRVelocityFilter(0, 5, 60d / 1000d);
+		VelocityFilter upDownVelocityFilter = new FIRVelocityFilter(0, 5, 60d / 1000d);
+		VelocityFilter forwardBackVelocityFilter = new FIRVelocityFilter(0, 5, 60d / 1000d);
 
 		this.movingTargetPositionEstimator = new MovingTargetPositionEstimator(leftRightVelocityFilter,
 				upDownVelocityFilter, forwardBackVelocityFilter);
