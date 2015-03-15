@@ -27,7 +27,7 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 	private Runnable r = null;
 	private String directoryPath;
 	private Trajectory<DroneState> targetTrajectory;
-
+	private boolean displayImages;
 	private FrameSequenceSource<SerializableBufferedImageAdapter,Long> webcamImageExtractor;
 
 	
@@ -47,10 +47,13 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 		this.iteration = 0;
 	}
 
-	public WebCamObserver() {
-		this(null);
+	public WebCamObserver(boolean displayImages) {
+		this(null,displayImages);
 	}
 	
+	public WebCamObserver() {
+		this(null,true);
+	}
 	
 
 	@Override
@@ -64,7 +67,7 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 		return super.getCurrentState();
 	}
 
-	public WebCamObserver(String directoryPath) {
+	public WebCamObserver(String directoryPath,boolean displayImages) {
 		super();
 		VelocityFilter leftRightVelocityFilter = new FIRVelocityFilter(0, 5, 60d / 1000d);
 		VelocityFilter upDownVelocityFilter = new FIRVelocityFilter(0, 5, 60d / 1000d);
@@ -73,6 +76,7 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 		this.movingTargetPositionEstimator = new MovingTargetPositionEstimator(leftRightVelocityFilter,
 				upDownVelocityFilter, forwardBackVelocityFilter);
 		this.directoryPath = directoryPath;
+		this.displayImages = displayImages;
 	}
 
 	@Override

@@ -18,10 +18,16 @@ public class MockWebCamObserver extends AbstractWebCamObserver {
 
 	private DroneState droneState;
 	private ImageDisplay<Long> imageDisplay;
+	private boolean displayImages;
 
-	public MockWebCamObserver(DroneState initialDroneState) {
+	public MockWebCamObserver(DroneState initialDroneState,boolean displayImages) {
 		super();
 		this.droneState = initialDroneState;
+		this.displayImages = displayImages;
+	}
+	
+	public MockWebCamObserver(DroneState initialDroneState) {
+		this(initialDroneState,true);
 	}
 
 	public void stateUpdatedAfterAction(DroneState droneState, DroneAction droneAction) {
@@ -68,8 +74,10 @@ public class MockWebCamObserver extends AbstractWebCamObserver {
 							- 2 * r, 4 * r, 4 * r);
 
 		}
-
-		imageDisplay.onFrameUpdate(new SerializableBufferedImageAdapter(image), new Date().getTime());
+		if (displayImages)
+		{
+			imageDisplay.onFrameUpdate(new SerializableBufferedImageAdapter(image), new Date().getTime());
+		}
 		targetTrajectoryIteration++;
 	}
 
@@ -89,8 +97,10 @@ public class MockWebCamObserver extends AbstractWebCamObserver {
 
 	@Override
 	public void startObserving() {
-		imageDisplay = new ImageDisplay<Long>(new Dimension(640, 480));
-
+		if (displayImages)
+		{
+			imageDisplay = new ImageDisplay<Long>(new Dimension(640, 480));
+		}
 	}
 
 }
