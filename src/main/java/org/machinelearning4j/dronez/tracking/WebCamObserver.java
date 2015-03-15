@@ -126,10 +126,13 @@ public class WebCamObserver extends AbstractWebCamObserver implements StateActio
 
 		labeledFrameSequenceSource.addFrameDecorator(new TargetDisplayer(this));
 
-		labeledFrameSequenceSource
+		if (displayImages)
+		{
+			labeledFrameSequenceSource
 				.addFrameUpdateListener(new LabeledDataFrameUpdateListenerAdapter<SerializableBufferedImageAdapter, Position3D, Long>(
 						new ImageDisplay<Long>(labeledFrameSequenceSource.getFrameWidth(), labeledFrameSequenceSource
 								.getFrameHeight())));
+		}
 
 		// Displaying the images when they are extracted
 		if (directoryPath != null) {
