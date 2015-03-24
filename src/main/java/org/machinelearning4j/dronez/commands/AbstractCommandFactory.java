@@ -15,6 +15,12 @@ public abstract class AbstractCommandFactory implements CommandFactory {
 
 	private int recentActionCount;
 	
+	
+	
+	public int getRecentActionCount() {
+		return recentActionCount;
+	}
+
 	public void init() {
 		this.distanceToTargetPolicy = createDistanceToTargetPolicy();
 	}
