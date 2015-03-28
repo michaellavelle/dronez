@@ -52,7 +52,7 @@ public class PositionVelocityValueFunctionLinearRegressionFeaturesMapper impleme
 		features[2] = Math.pow(data.getVelocity(), 2d);
 		if (includeRecentActions) {
 			for (int i = 0; i < recentActionCount; i++) {
-				features[3 + i] = data.getRecentActions().get(i).ordinal() - 1;
+				features[3 + i] = data.getRecentActions().get(i).getValue();
 			}
 		}
 		return features;
